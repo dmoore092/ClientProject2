@@ -6,7 +6,7 @@ Author: Dale Moore
 Link: http://www.google.com
 
 ## Purpose 
-Redesign https://ist.rit.edu/index.php while consuming http://www.ist.rit.edu/api/.
+Redesign https://ist.rit.edu/index.php using JQuery while consuming http://www.ist.rit.edu/api/.
 
 ## Site Features
 * Mobile First Design
