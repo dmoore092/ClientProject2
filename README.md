@@ -1,6 +1,8 @@
 # ISTE340-01 Project 2
 Created on 3/30/2019
+
 Author: Dale Moore
+
 Link: http://www.google.com
 
 ## Purpose 
