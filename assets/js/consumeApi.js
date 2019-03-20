@@ -1,3 +1,4 @@
+//http://www.ist.rit.edu/api/
 $(document).ready(function(){
     //get the about data
     $.ajax({

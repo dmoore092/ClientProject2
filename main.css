@@ -3,3 +3,47 @@
     padding: 0;
     box-sizing: border-box;
 }
+body{
+    background-color: white;
+    font-family: verdana;
+}
+#fullpage{
+    height: 100vh;
+    overflow: hidden;
+}
+#fullpage section{
+    height: 100vh;
+}
+#fullpage section:nth-child(1){
+    background: red;
+}
+#fullpage section:nth-child(2){
+    background: green;
+}
+#fullpage section:nth-child(3){
+    background: blue;
+}
+#fullpage section:nth-child(4){
+    background: orange;
+}
+#fullpage section:nth-child(5){
+    background: purple;
+}
+#fullpage section:nth-child(6){
+    background: yellowgreen;
+}
+#fullpage section:nth-child(7){
+    background: greenyellow;
+}
+#fullpage section:nth-child(8){
+    background: orchid;
+}
+#fullpage section:nth-child(9){
+    background: magenta;
+}
+#fullpage section:nth-child(10){
+    background: salmon;
+}
+#fullpage section:nth-child(11){
+    background: pink;
+}

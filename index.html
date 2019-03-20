@@ -5,16 +5,29 @@
   <title>IST Department at RIT</title>
   <link rel="stylesheet" type="text/css" href="main.css">
 <script src="assets/js/jquery-3.3.1.min.js" type="text/javascript"></script>
+<script src="assets/js/jquery.onepage-scroll.js" type="text/javascript"></script>
 <script src="assets/js/consumeApi.js" type="text/javascript"></script>
-<script src="assets/js/mobileHeader.js" type="text/javascript"></script>
 <script type="text/javascript"></script>
 </head>
 <body>
-    <div><a href="javascript:void(0);" class="navicon" onclick="openNav()">Menu</a></div>
-    <h2>IST Dept Site</h2>
-	<div id="content" style="height:200px"></div>
-	
-	<div id="people"></div>
-
+    <div class="main">
+        <section>Welcome</section>
+        <section>Our Undergraduate Degrees</section>
+        <section>Our graduate Degrees</section>
+        <section>Our Undergraduate Minors</section>
+        <section>Academic Excellence Equals Career Performance</section>
+        <section>Where Our Students Work</section>
+        <section>Our People</section>
+        <section>Faculty Research: Areas of Interest</section>
+        <section>Research Faculty: Lookup by Faculty</section>
+        <section>Student Resources</section>
+        <section>Our Social Presence</section>
+    </div>
+    <script>
+        $(".main").onepage_scroll(); 
+    </script>
 </body>
 </html>
+
+
+<!-- <img src="assets/images/rit-vert-orange-white/RIT_RGB_vert_w.svg" alt="rit logo" > -->
