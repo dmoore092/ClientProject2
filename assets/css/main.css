@@ -51,6 +51,25 @@ body{
     overflow: hidden;
     
 }
+#welcome-about{
+    border: 2px solid black;
+    background-color: white;
+    width: 80%;
+    margin: auto;
+    margin-top: 15px;
+    border-radius: 10px;
+    padding: 15px;
+    font-size: .75rem;
+    display: none;
+}
+#welcome-arrow{
+    color: white;
+    font-size: 3rem;
+    text-align: center;
+    margin-top: 30%;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
 /* Welcome Section */
 .main section:nth-child(1){
     
@@ -130,5 +149,11 @@ body{
     }
     #welcome>div:nth-of-type(2){
         font-size: 3rem;
+    }
+    #welcome-about{
+        display: block;
+    }
+    #welcome-arrow{
+        margin-top: 10%;
     }
   }
