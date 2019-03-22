@@ -1,0 +1,134 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: verdana;
+    position: relative;
+}
+/* .main{
+    height: 100vh;
+    overflow: hidden;
+} */
+.menu-link{
+    position: fixed;
+    /* top: 2%; */
+    /* left: 5%; */
+    font-size: 1.5em;
+    background-color: black;
+    /* border-top: 2px solid #F76902; */
+    border-right: 2px solid #F76902;
+    border-bottom: 2px solid #F76902;
+    padding: 0 20px 15px 15px;
+    height: 55px;
+    color: white;
+    z-index: 1;
+}
+.panel{
+    /* margin-top: 50px; */
+    background-color: black;
+    position: fixed;
+    left: -15.625em; /*left or right and the width of your navigation panel*/
+    width: 15.625em; /*should match the above value*/
+    z-index: 1;
+}
+.panel a {
+    display: block;
+    border-bottom: 2px solid #F76902;
+    padding: 1em;
+    color: white;
+    text-decoration: none;
+}
+.panel a:hover,.panel a:active {
+  background: #F76902;
+}
+.main{
+    clear: both;
+}
+.main section{
+    height: 100vh;
+    overflow: hidden;
+    
+}
+/* Welcome Section */
+.main section:nth-child(1){
+    
+}
+.welcome-bg-image{
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    display: block;
+    width: 100vw;
+    height: 100vh;;
+    background-image: url("../images/ritspiritpawsmall.jpg");
+    background-repeat: no-repeat;
+    background-position: 40% 40%;
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+}
+#welcome>div:nth-of-type(2){
+    border: 2px solid black;
+    border-radius: 10px;
+    box-shadow: 2px 2px;
+    text-align: center;
+    width: 70%;
+    margin: auto;
+    font-size: 1.5rem;
+    background-color: #F76902;
+    /* background-color: rgba(247, 105, 2, 0.7); */
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 40px 20px;
+    margin-top: 20%;
+    /* opacity: .5; */
+}
+/* Our Undergraduate Degrees */
+.main section:nth-child(2){
+    background: green;
+}
+/* Our graduate Degrees */
+.main section:nth-child(3){
+    background: blue;
+}
+/* Our Undergraduate Minors */
+.main section:nth-child(4){
+    background: orange;
+}
+/* Academic Excellence Equals Career Performance */
+.main section:nth-child(5){
+    background: purple;
+}
+/* Where Our Students Work */
+.main section:nth-child(6){
+    background: yellowgreen;
+}
+/* Our People */
+.main section:nth-child(7){
+    background: greenyellow;
+}
+/* Faculty Research: Areas of Interest */
+.main section:nth-child(8){
+    background: orchid;
+}
+/* Research Faculty: Lookup by Faculty */
+.main section:nth-child(9){
+    background: magenta;
+}
+/* Student Resources */
+.main section:nth-child(10){
+    background: salmon;
+}
+/* Our Social Presence */
+.main section:nth-child(11){
+    background: pink;
+}
+@media only screen and (min-width: 600px) {
+    .welcome-bg-image{
+        background-image: url("../images/ritspiritpaw.jpg");
+    }
+    #welcome>div:nth-of-type(2){
+        font-size: 3rem;
+    }
+  }

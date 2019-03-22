@@ -3,39 +3,53 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="main.css">
+        <link rel="stylesheet" type="text/css" href="assets/css/main.css">
         <script src="assets/js/jquery-3.3.1.min.js" type="text/javascript"></script>
         <script src="assets/js/jquery.scrollify.js" type="text/javascript"></script>
         <script src="assets/js/consumeApi.js" type="text/javascript"></script>
         <script src="assets/js/nav.menu.js" type="text/javascript"></script>
+        <script src="assets/js/jquery.big-slide.js"></script>
+        <!-- handles the page scrolling -->
         <script type="text/javascript">$(function() {$.scrollify({section : ".sections",});});</script>
+        <!-- Handles the navigation -->
+        <script>$(document).ready(function() {$('.menu-link').bigSlide();});</script>
         <title>IST Department at RIT</title>
     </head>
-    <body>
-        <div class="nav-menu">
-            <a class="nav-menu-link" href="#">Our Undergraduate Degrees</a><br/>
-            <a class="nav-menu-link" href="#">Our graduate Degrees</a><br/>
-            <a class="nav-menu-link" href="#">Our Undergraduate Minors</a><br/>
-            <a class="nav-menu-link" href="#">Our People</a><br/>
-            <a class="nav-menu-link" href="#">Research Faculty</a><br/>
-            <a class="nav-menu-link" href="#">Student Resources</a><br/>
-            <div id="nav-menu-icon">></div>
-        </div>
-        <div class="main">
-            <section class="sections">Welcome</section>
-            <section class="sections">Our Undergraduate Degrees</section>
-            <section class="sections">Our graduate Degrees</section>
-            <section class="sections">Our Undergraduate Minors</section>
-            <section class="sections">Academic Excellence Equals Career Performance</section>
-            <section class="sections">Where Our Students Work</section>
-            <section class="sections">Our People</section>
-            <section class="sections">Faculty Research: Areas of Interest</section>
-            <section class="sections">Research Faculty: Lookup by Faculty</section>
-            <section class="sections">Student Resources</section>
-            <section class="sections">Our Social Presence</section>
+    <body class="push">
+        <a href="#menu" class="menu-link">&#9776;</a>
+        <nav id="menu" class="panel" role="navigation">
+                <ul>
+                    <li><a href="/index.html#welcome">Welcome</a></li>
+                    <li><a href="/index.html#ugrad-deg">Our Undergraduate Degrees</a></li>
+                    <li><a href="/index.html#grad-deg">Our graduate Degrees</a></li>
+                    <li><a href="/index.html#ugrad-minor">Our Undergraduate Minors</a></li>
+                    <li><a href="/index.html#acad-exec">Academic Excellence Equals Career Performance</a></li>
+                    <li><a href="/index.html#stu-work">Where Our Students Work</a></li>
+                    <li><a href="/index.html#people">Our People</a></li>
+                    <li><a href="/index.html#research-fac-interest">Research Faculty: Areas of Interest</a></li>
+                    <li><a href="/index.html#research-fac-lookup">Research Faculty: Lookup by Faculty</a></li>
+                    <li><a href="/index.html#stu-resources">Student Resources</a></li>
+                    <li><a href="/index.html#social">Our Social Presence</a></li>
+                </ul>
+        </nav>
+
+        <div class="main wrap push" >
+            <section id="welcome" class="sections">
+                <div class="welcome-bg-image"></div>
+                <div>
+                    <p><span style="color:#F76902;">Information</span> <span style="color:white;">Sciences and Technologies @ RIT</span></p>
+                </div>
+            </section>
+            <section id="ugrad-deg" class="sections">Our Undergraduate Degrees</section>
+            <section id="grad-deg" class="sections" >Our graduate Degrees</section>
+            <section id="ugrad-minor" class="sections">Our Undergraduate Minors</section>
+            <section id="acad-exec" class="sections">Academic Excellence Equals Career Performance</section>
+            <section id="stu-work" class="sections">Where Our Students Work</section>
+            <section id="people" class="sections">Our People</section>
+            <section id="research-fac-interest" class="sections">Faculty Research: Areas of Interest</section>
+            <section id="research-fac-lookup" class="sections">Research Faculty: Lookup by Faculty</section>
+            <section id="stu-resources" class="sections">Student Resources</section>
+            <section id="social" class="sections">Our Social Presence</section>
         </div>
     </body>
 </html>
-
-
-<!-- <img src="assets/images/rit-vert-orange-white/RIT_RGB_vert_w.svg" alt="rit logo" > -->

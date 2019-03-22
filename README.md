@@ -13,7 +13,7 @@ Redesign https://ist.rit.edu/index.php using JQuery while consuming http://www.i
 * JQuery Plugins(4)
   * Google Maps
   * Scrollify https://github.com/lukehaas/Scrollify
-  *
+  * BigSlide http://ascott1.github.io/bigSlide.js/
   *
 * 
 *
