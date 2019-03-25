@@ -13,6 +13,10 @@
         <script type="text/javascript">$(function() {$.scrollify({section : ".sections",});});</script>
         <!-- Handles the navigation -->
         <script>$(document).ready(function() {$('.menu-link').bigSlide();});</script>
+        <!-- Handles modal -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+        
         <title>IST Department at RIT</title>
     </head>
     <body class="push">
@@ -22,7 +26,7 @@
                     <li><a href="/index.html#welcome">Welcome</a></li>
                     <li><a href="/index.html#ugrad-deg">Our Undergraduate Degrees</a></li>
                     <li><a href="/index.html#grad-deg">Our graduate Degrees</a></li>
-                    <li><a href="/index.html#ugrad-minor">Our Undergraduate Minors</a></li>
+                    <li><a href="/index.html#ugrad-minors">Our Undergraduate Minors</a></li>
                     <li><a href="/index.html#acad-exec">Academic Excellence Equals Career Performance</a></li>
                     <li><a href="/index.html#stu-work">Where Our Students Work</a></li>
                     <li><a href="/index.html#people">Our People</a></li>
@@ -34,7 +38,8 @@
         </nav>
         <div class="main wrap push" >
 <!-- section 1 -->
-            <section id="welcome" class="sections">
+            <!-- <div class="welcome-bg-image"></div> -->
+            <section class="main-wrapper sections">
                 <div class="welcome-bg-image"></div>
                 <div>
                     <p><span style="color:#F76902;">Information</span> <span style="color:white;">Sciences and Technologies @ RIT</span></p>
@@ -44,13 +49,31 @@
             </section>
 <!-- End of section 1 -->
 <!-- section 2 -->
-            <section id="ugrad-deg" class="sections">Our Undergraduate Degrees</section>
+            <section class="main-wrapper sections">
+                <div></div>
+                <div>
+                    <p><span style="color:white">Our </span><span style="color:#F76902;">Undergraduate</span><span style="color:white;"> Degrees</span></p>
+                    <div id="ugrad-deg">
+                </div>
+            </section>
 <!-- End of section 2 -->
 <!-- section 3 -->
-            <section id="grad-deg" class="sections" >Our graduate Degrees</section>
+            <section class="main-wrapper sections">
+                <div></div>
+                <div>
+                    <p><span style="color:white">Our </span><span style="color:#F76902;">Graduate</span><span style="color:white;"> Degrees</span></p>
+                    <div id="grad-deg">
+                </div>
+            </section>
 <!-- End of section 3 -->
 <!-- section 4 -->
-            <section id="ugrad-minor" class="sections">Our Undergraduate Minors</section>
+<section class="main-wrapper sections">
+        <div></div>
+        <div>
+            <p><span style="color:white">Our </span><span style="color:#F76902;">Undergraduate</span><span style="color:white;"> Minors</span></p>
+            <div id="ugrad-minors">
+        </div>
+    </section>
 <!-- End of section 4 -->
 <!-- section 5 -->
             <section id="acad-exec" class="sections">Academic Excellence Equals Career Performance</section>
