@@ -73,7 +73,6 @@ $(document).ready(function(){
 
     ///employment/
     getData('get', {path:'/employment/'},'#employment').done(function(min){
-        var isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
         //console.log(min);
         var stuff = [];
         $.each(min, function(i, item){
@@ -98,57 +97,124 @@ $(document).ready(function(){
         });
 
         //coop table
-        $('.emp-title:nth-of-type(5)').after('<div>\
-                                                <table id="coop-table">\
-                                                    <thead>\
-                                                        <tr>\
-                                                            <th>Employer</th>\
-                                                            <th>Degree</th>\
-                                                            <th>City</th>\
-                                                            <th>Term</th>\
-                                                        </tr>\
-                                                    </thead>\
-                                                    <tbody>\
-                                                    </tbody>\
-                                                </table>\
-                                            </div>');
-        $.each(stuff[9], function(i, coops){
-            $('table:nth-of-type(1)').append('<tr>\
-                                <td>'+coops.employer+'</td>\
-                                <td>'+coops.degree+'</td>\
-                                <td>'+coops.city+'</td>\
-                                <td>'+coops.term+'</td>\
-                                </tr>');
+        $('.emp-title:nth-of-type(5)').after('<a href="#ex1" rel="modal:open" id="coop">See Our Co-ops!</a>');
+        $('#coop').on('click', function(){
+            $('.modal').html($('<div>\
+                                <table id="coop-table">\
+                                    <thead>\
+                                        <tr>\
+                                            <th>Employer</th>\
+                                            <th>Degree</th>\
+                                            <th>City</th>\
+                                            <th>Term</th>\
+                                        </tr>\
+                                    </thead>\
+                                    <tbody>\
+                                    </tbody>\
+                                </table>\
+                            </div>'));
+            $.each(stuff[9], function(i, coops){
+                $('table').append('<tr>\
+                                    <td>'+coops.employer+'</td>\
+                                    <td>'+coops.degree+'</td>\
+                                    <td>'+coops.city+'</td>\
+                                    <td>'+coops.term+'</td>\
+                                    </tr>');
+            });
+            $('#coop-table').DataTable({
+                responsive: true,
+                scrollY: 400,
+                scrollCollapse: true
+            });
+
         });
-        // console.log(stuff[11]);
-        //professional table
-        $('.emp-title:nth-of-type(6)').after('<div>\
-                                                <table id="prof-table">\
-                                                    <thead>\
-                                                        <tr>\
-                                                            <th>Employer</th>\
-                                                            <th>Degree</th>\
-                                                            <th>City</th>\
-                                                            <th>Start Date</th>\
-                                                            <th>Job Title</th>\
-                                                        </tr>\
-                                                    </thead>\
-                                                    <tbody>\
-                                                    </tbody>\
-                                                </table>\
-                                            </div>');
-        $.each(stuff[11], function(i, jobs){
-            $('#prof-table').append('<tr>\
-                                <td>'+jobs.employer+'</td>\
-                                <td>'+jobs.degree+'</td>\
-                                <td>'+jobs.city+'</td>\
-                                <td>'+jobs.startDate+'</td>\
-                                <td>'+jobs.title+'</td>\
-                                </tr>');
+        //prof table
+        $('.emp-title:nth-of-type(6)').after('<a href="#ex1" rel="modal:open" id="prof">See Where our grads have gone to work!!</a>');
+        $('#prof').on('click', function(){
+            $('.modal').html($('<div>\
+                                    <table id="prof-table">\
+                                        <thead>\
+                                            <tr>\
+                                                <th>Employer</th>\
+                                                <th>Degree</th>\
+                                                <th>City</th>\
+                                                <th>Start Date</th>\
+                                                <th>Job Title</th>\
+                                            </tr>\
+                                        </thead>\
+                                        <tbody>\
+                                        </tbody>\
+                                    </table>\
+                                </div>'));
+            $.each(stuff[11], function(i, jobs){
+                $('table').append('<tr>\
+                                    <td>'+jobs.employer+'</td>\
+                                    <td>'+jobs.degree+'</td>\
+                                    <td>'+jobs.city+'</td>\
+                                    <td>'+jobs.startDate+'</td>\
+                                    <td>'+jobs.title+'</td>\
+                                    </tr>');
+            });
+            $('#prof-table').DataTable({
+                responsive: true,
+                scrollY: 400,
+                scrollCollapse: true
+            });
         });
+        //end of /employment/
     });
 
-    $('#coop-table').DataTable();
+    ///people/faculty/
+    getData('get', {path:'/people/'},'#people').done(function(min){
+        var isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
+        var course = [];
+        $.each(min.faculty, function(i, item){
+            // console.log(item);
+            $('#people-faculty').append('<div data-uname='+this.username+'><a href="#ex1" rel="modal:open"><h4>'+ item.name + '</h4></a></div>');
+            
+            // // $('#ugrad-minors').append('<div><a href="#ex1" rel="modal:open"><img src="'+degimages[i]+'" alt="icon" /></a></p>');
+ 
+        });
+        $('#people-faculty div').on('click', function(){
+            // $('.modal').html($('<div>'+item.username+'</div>'));
+            var who = getAttributesByName(min.faculty, 'username', $(this).attr('data-uname'));
+            // console.log(me);
+            $('.modal').html($('<div><img src="'+who.imagePath+'" alt="faculty image"/>'));
+            $.each(who, function(index, item){
+                if(!item == null || !item == ' ' && index != 'imagePath'){
+                    if(index == 'website'){
+                        $('.modal').append('<p><span class="caps">'+index + '</span> <a href="' +item+'" target="_blank">'+item+'</a></p>');
+                    }
+                    else if(index == 'email'){
+                        $('.modal').append('<p><span class="caps">'+index + '</span> <a href="mailto:'+item+'">'+item+'<a></p>');
+                    }
+                    else{
+                        $('.modal').append('<p><span class="caps">'+index + '</span> ' +item+'</p>');
+                    }
+                    
+                }
+                // $('.modal').append('<h4>'+index +' '+ item+'</h4>');
+                console.log(item);
+            });
+            $('.modal').append($('</div>'));
+
+            // $('.modal').html($('<div>\
+            //                         <img src="'+who.imagePath+'" alt="faculty image"/>\
+            //                         <h4>'+who.name+'</h4>\
+            //                         <h4>'+who.title+'</h4>\
+            //                         <h4>\"'+who.tagline+'\"</h4>\
+            //                         <h4>'+who.interestArea+'</h4>\
+            //                         <h4>'+who.website+'</h4>\
+            //                         <h4>'+who.office+'</h4>\
+            //                         <h4>'+who.phone+'</h4>\
+            //                         <h4>'+who.email+'</h4>\
+            //                         <h4>'+who.twitter+'</h4>\
+            //                         <h4>'+who.facebook+'</h4>\
+            //                     </div>'));
+        });
+        // $('.modal').html($('test'));
+        //end of people/faculty/
+    });
     //end of $(document).ready();
 });
 
@@ -158,8 +224,9 @@ $('.faculty').on('click', function(){
     console.log(me);
 });
 
-//helper function
+//helper function for people
 function getAttributesByName(arr, name, val){
+    // console.log(arr);
     var result = null;
     $.each(arr, function(){
         if(this[name]===val){
@@ -199,13 +266,13 @@ $('.faculty').on('click', function(){
     console.log(me);
 });
 
-//helper function
-function getAttributesByName(arr, name, val){
-    var result = null;
-    $.each(arr, function(){
-        if(this[name]===val){
-            result = this;
-        }
-    });
-    return result;
-}
+// //helper function
+// function getAttributesByName(arr, name, val){
+//     var result = null;
+//     $.each(arr, function(){
+//         if(this[name]===val){
+//             result = this;
+//         }
+//     });
+//     return result;
+// }
