@@ -7,10 +7,9 @@
         <script src="assets/js/jquery-3.3.1.min.js" type="text/javascript"></script>
         <script src="assets/js/jquery.scrollify.js" type="text/javascript"></script>
         <script src="assets/js/consumeApi.js" type="text/javascript"></script>
-        <script src="assets/js/nav.menu.js" type="text/javascript"></script>
         <script src="assets/js/jquery.big-slide.js"></script>
         <!-- handles the page scrolling -->
-        <script type="text/javascript">$(function() {$.scrollify({section : ".sections",});});</script>
+        <!-- <script type="text/javascript">$(function() {$.scrollify({section : ".sections",});});</script> -->
         <!-- Handles the navigation -->
         <script>$(document).ready(function() {$('.menu-link').bigSlide();});</script>
         <!-- Handles modal -->
@@ -19,15 +18,15 @@
         
         <title>IST Department at RIT</title>
     </head>
-    <body class="push">
+    <body class="push bg-image">
         <a href="#menu" class="menu-link">&#9776;</a>
         <nav id="menu" class="panel" role="navigation">
                 <ul>
-                    <li><a href="/index.html#welcome">Welcome</a></li>
+                    <li><a href="/index.html#welcome-about">Welcome</a></li>
                     <li><a href="/index.html#ugrad-deg">Our Undergraduate Degrees</a></li>
                     <li><a href="/index.html#grad-deg">Our graduate Degrees</a></li>
                     <li><a href="/index.html#ugrad-minors">Our Undergraduate Minors</a></li>
-                    <li><a href="/index.html#acad-exec">Academic Excellence Equals Career Performance</a></li>
+                    <li><a href="/index.html#acad-exec">Academic Excellence</a></li>
                     <li><a href="/index.html#stu-work">Where Our Students Work</a></li>
                     <li><a href="/index.html#people">Our People</a></li>
                     <li><a href="/index.html#research-fac-interest">Research Faculty: Areas of Interest</a></li>
@@ -38,45 +37,45 @@
         </nav>
         <div class="main wrap push" >
 <!-- section 1 -->
-            <!-- <div class="welcome-bg-image"></div> -->
             <section class="main-wrapper sections">
-                <div class="welcome-bg-image"></div>
                 <div>
                     <p><span style="color:#F76902;">Information</span> <span style="color:white;">Sciences and Technologies @ RIT</span></p>
-                    <div id="welcome-about"></div>
+                    <div id="welcome-about" class="black-bg-section"></div>
                 </div>
                 <div id="welcome-arrow">&#8595;</div>
             </section>
 <!-- End of section 1 -->
 <!-- section 2 -->
             <section class="main-wrapper sections">
-                <div></div>
                 <div>
                     <p><span style="color:white">Our </span><span style="color:#F76902;">Undergraduate</span><span style="color:white;"> Degrees</span></p>
-                    <div id="ugrad-deg">
+                    <div id="ugrad-deg" class="black-bg-section"></div>
                 </div>
             </section>
 <!-- End of section 2 -->
 <!-- section 3 -->
             <section class="main-wrapper sections">
-                <div></div>
                 <div>
                     <p><span style="color:white">Our </span><span style="color:#F76902;">Graduate</span><span style="color:white;"> Degrees</span></p>
-                    <div id="grad-deg">
+                    <div id="grad-deg" class="black-bg-section"></div>
                 </div>
             </section>
 <!-- End of section 3 -->
 <!-- section 4 -->
-<section class="main-wrapper sections">
-        <div></div>
-        <div>
-            <p><span style="color:white">Our </span><span style="color:#F76902;">Undergraduate</span><span style="color:white;"> Minors</span></p>
-            <div id="ugrad-minors">
-        </div>
-    </section>
+            <section class="main-wrapper sections">
+                    <div>
+                        <p><span style="color:white">Our </span><span style="color:#F76902;">Undergraduate</span><span style="color:white;"> Minors</span></p>
+                        <div id="ugrad-minors" class="black-bg-section"></div>
+                    </div>
+                </section>
 <!-- End of section 4 -->
 <!-- section 5 -->
-            <section id="acad-exec" class="sections">Academic Excellence Equals Career Performance</section>
+<section class="main-wrapper sections">
+        <div>
+            <p><span style="color:#F76902;">Academic</span> <span style="color:white;">Excellence Equals Career Performance</span></p>
+            <div id="employment" class="black-bg-section"></div>
+        </div>
+    </section>
 <!-- End of section 5 -->
 <!-- section 6 -->
             <section id="stu-work" class="sections">Where Our Students Work</section>
@@ -97,5 +96,6 @@
             <section id="social" class="sections">Our Social Presence</section>
 <!-- End of section 11 -->
         </div> <!-- end of class="main wrap push"-->
+        <div id="ex1" class="modal"><a href="#" rel="modal:close"></a></div>
     </body>
 </html>

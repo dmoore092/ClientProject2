@@ -7,17 +7,22 @@ body{
     font-family: verdana;
     position: relative;
 }
-/* .main{
+.bg-image{
+    left: 0;
+    right: 0;
+    width: 100vw;
     height: 100vh;
-    overflow: hidden;
-} */
+    background-image: url("../images/ritspiritpawsmall.jpg");
+    background-repeat: no-repeat;
+    background-position: 40% 40%;
+    background-attachment: fixed;
+    background-size: cover;
+}
 .menu-link{
     position: fixed;
-    /* top: 2%; */
-    /* left: 5%; */
+    top: 0%;
     font-size: 1.5em;
     background-color: black;
-    /* border-top: 2px solid #F76902; */
     border-right: 2px solid #F76902;
     border-bottom: 2px solid #F76902;
     padding: 0 20px 15px 15px;
@@ -26,7 +31,6 @@ body{
     z-index: 1;
 }
 .panel{
-    /* margin-top: 50px; */
     background-color: black;
     position: fixed;
     left: -15.625em; /*left or right and the width of your navigation panel*/
@@ -47,21 +51,17 @@ body{
     clear: both;
 }
 .main section{
-    height: 100vh;
-    overflow: hidden;
-    
+    height: 100vh;    
 }
 #welcome-about{
     border: 2px solid black;
     background-color: white;
-    max-height: 35vh;
     overflow: auto;
     margin: auto;
     margin-top: 15px;
     border-radius: 10px;
     padding: 15px;
     font-size: .75rem;
-    /* display: none; */
 }
 #welcome-arrow{
     color: white;
@@ -72,29 +72,12 @@ body{
 }
 
 /* Welcome Section */
-.main section:nth-child(1){
-    
-}
-.welcome-bg-image{
-    position: fixed;
-    left: 0;
-    right: 0;
-    z-index: -1;
-    display: block;
-    width: 100vw;
-    height: 100vh;;
-    background-image: url("../images/ritspiritpawsmall.jpg");
-    background-repeat: no-repeat;
-    background-position: 40% 40%;
-    filter: blur(8px);
-    -webkit-filter: blur(8px);
-}
-.main-wrapper>div:nth-of-type(2){
+.main-wrapper>div:nth-of-type(1){
     border: 2px solid black;
     border-radius: 10px;
     box-shadow: 2px 2px;
     text-align: center;
-    width: 70%;
+    width: 100%;
     margin: auto;
     font-size: 1.5rem;
     background-color: #F76902;
@@ -114,7 +97,7 @@ body{
     width: 50%;
     margin-top: 10px;
 }
-#ugrad-deg, #grad-deg, #ugrad-minors{
+.black-bg-section{
     background-color: white;
     border-radius: 10px;
     font-size: .9rem;
@@ -130,8 +113,8 @@ body{
     /* background: orange; */
 }
 #ugrad-minors{
-    max-height: 60vh;
-    overflow: auto;
+    /* max-height: 100vh; */
+    /* overflow: auto; */
 }
 #ugrad-minors div:nth-child(odd){
     background: #F76902;
@@ -177,7 +160,16 @@ body{
     /* background: pink; */
 }
 @media only screen and (min-width: 600px) {
-    .welcome-bg-image{
+    .main-wrapper>div:nth-of-type(1){
+        width: 70%;
+        margin-top: 15%;
+        border: 2px solid white;
+        /* margin-top: 3%; */
+    }
+    #welcome-about{
+        font-size: .9rem;
+    }
+    .bg-image{
         background-image: url("../images/ritspiritpaw.jpg");
     }
     #welcome>div:nth-of-type(2){
@@ -189,11 +181,12 @@ body{
     #welcome-arrow{
         margin-top: 10%;
     }
+
     #ugrad-deg img, #grad-deg img{
         width: 10%;
     }
     #ugrad-minors{
-        height: 80vh;
+        /* height: 80vh; */
     }
     #ugrad-minors div{
         height: 69px;
