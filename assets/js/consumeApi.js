@@ -84,21 +84,71 @@ $(document).ready(function(){
             });
         });
         $('.emp-title:first').after('<p>'+stuff[1][1].description+'</p>');
-        $('.emp-title:nth-child(3)').after('<h5>'+stuff[3][0].value+'</h5><p>'+stuff[3][0].description+'</p>');
-        $('.emp-title:nth-child(3)').after('<h5>'+stuff[3][1].value+'</h5><p>'+stuff[3][1].description+'</p>');
-        $('.emp-title:nth-child(3)').after('<h5>'+stuff[3][2].value+'</h5><p>'+stuff[3][2].description+'</p>');
-        $('.emp-title:nth-child(3)').after('<h5>'+stuff[3][3].value+'</h5><p>'+stuff[3][3].description+'</p>');
+        $('.emp-title:nth-of-type(2)').after('<h5>'+stuff[3][0].value+'</h5><p>'+stuff[3][0].description+'</p>');``
+        $('.emp-title:nth-of-type(2)').after('<h5>'+stuff[3][1].value+'</h5><p>'+stuff[3][1].description+'</p>');
+        $('.emp-title:nth-of-type(2)').after('<h5>'+stuff[3][2].value+'</h5><p>'+stuff[3][2].description+'</p>');
+        $('.emp-title:nth-of-type(2)').after('<h5>'+stuff[3][3].value+'</h5><p>'+stuff[3][3].description+'</p>');
 
         $.each(stuff[5], function(k, emps){
-            $('.emp-title:nth-child(12)').after('<p>'+emps+'</p>');
+            $('.emp-title:nth-of-type(3)').after('<p>'+emps+'</p>');
         });
         
-        $.each(stuff[7], function(l, cars){
-            $('.emp-title:nth-child(19)').after('<p>'+cars+'</p>');
+        $.each(stuff[7], function(l, careers){
+            $('.emp-title:nth-of-type(4)').after('<p>'+careers+'</p>');
         });
-        console.log(stuff);
-        console.log(stuff[3][0].value);
+
+        //coop table
+        $('.emp-title:nth-of-type(5)').after('<div>\
+                                                <table id="coop-table">\
+                                                    <thead>\
+                                                        <tr>\
+                                                            <th>Employer</th>\
+                                                            <th>Degree</th>\
+                                                            <th>City</th>\
+                                                            <th>Term</th>\
+                                                        </tr>\
+                                                    </thead>\
+                                                    <tbody>\
+                                                    </tbody>\
+                                                </table>\
+                                            </div>');
+        $.each(stuff[9], function(i, coops){
+            $('table:nth-of-type(1)').append('<tr>\
+                                <td>'+coops.employer+'</td>\
+                                <td>'+coops.degree+'</td>\
+                                <td>'+coops.city+'</td>\
+                                <td>'+coops.term+'</td>\
+                                </tr>');
+        });
+        // console.log(stuff[11]);
+        //professional table
+        $('.emp-title:nth-of-type(6)').after('<div>\
+                                                <table id="prof-table">\
+                                                    <thead>\
+                                                        <tr>\
+                                                            <th>Employer</th>\
+                                                            <th>Degree</th>\
+                                                            <th>City</th>\
+                                                            <th>Start Date</th>\
+                                                            <th>Job Title</th>\
+                                                        </tr>\
+                                                    </thead>\
+                                                    <tbody>\
+                                                    </tbody>\
+                                                </table>\
+                                            </div>');
+        $.each(stuff[11], function(i, jobs){
+            $('#prof-table').append('<tr>\
+                                <td>'+jobs.employer+'</td>\
+                                <td>'+jobs.degree+'</td>\
+                                <td>'+jobs.city+'</td>\
+                                <td>'+jobs.startDate+'</td>\
+                                <td>'+jobs.title+'</td>\
+                                </tr>');
+        });
     });
+
+    $('#coop-table').DataTable();
     //end of $(document).ready();
 });
 
