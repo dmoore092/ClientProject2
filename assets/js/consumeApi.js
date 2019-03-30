@@ -1,3 +1,4 @@
+var facultyImages;
 $(document).ready(function(){
     //welcome/about
     getData('get', {path:'/about/'},'#welcome-about').done(function(json){
@@ -53,6 +54,7 @@ $(document).ready(function(){
             $('#grad-deg').append('</div>');
         });
     });
+
 
     ///minors/
     getData('get', {path:'/minors/'},'#ugrad-minors').done(function(min){
@@ -161,71 +163,71 @@ $(document).ready(function(){
                 scrollCollapse: true
             });
         });
+        //TURN THIS ON AT THE END!!!!!!!!!!!!!!!!!!!
+        // $('#map').html('<iframe src="http://ist.rit.edu/api/map.php" frameborder="0" width="100%" height="700px"></iframe>');
         //end of /employment/
     });
 
     ///people/faculty/
-    getData('get', {path:'/people/'},'#people').done(function(min){
+    getFacOrStaff('faculty', 'people-faculty');
+    getFacOrStaff('staff', 'people-staff');
+  
+    ///research/
+    getData('get', {path:'/research/'},'#research-interest').done(function(min){
+        // console.log(min);
         var isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
-        var course = [];
-        $.each(min.faculty, function(i, item){
-            // console.log(item);
-            $('#people-faculty').append('<div data-uname='+this.username+'><a href="#ex1" rel="modal:open"><h4>'+ item.name + '</h4></a></div>');
-            
-            // // $('#ugrad-minors').append('<div><a href="#ex1" rel="modal:open"><img src="'+degimages[i]+'" alt="icon" /></a></p>');
- 
-        });
-        $('#people-faculty div').on('click', function(){
-            // $('.modal').html($('<div>'+item.username+'</div>'));
-            var who = getAttributesByName(min.faculty, 'username', $(this).attr('data-uname'));
-            // console.log(me);
-            $('.modal').html($('<div><img src="'+who.imagePath+'" alt="faculty image"/>'));
-            $.each(who, function(index, item){
-                if(!item == null || !item == ' ' && index != 'imagePath'){
-                    if(index == 'website'){
-                        $('.modal').append('<p><span class="caps">'+index + '</span> <a href="' +item+'" target="_blank">'+item+'</a></p>');
-                    }
-                    else if(index == 'email'){
-                        $('.modal').append('<p><span class="caps">'+index + '</span> <a href="mailto:'+item+'">'+item+'<a></p>');
-                    }
-                    else{
-                        $('.modal').append('<p><span class="caps">'+index + '</span> ' +item+'</p>');
-                    }
-                    
-                }
-                // $('.modal').append('<h4>'+index +' '+ item+'</h4>');
-                console.log(item);
+        //by interestArea
+        // var degimages = ["assets/images/icons/presentation.png", "assets/images/icons/head.png", "assets/images/icons/setting.png"];
+        $.each(min.byInterestArea, function(i, item){
+            $('#research-interest').append('<div><a href="#ex1" rel="modal:open"><h4>'+ this.areaName + '</h4></a></div>');
+            $('#research-interest').find('div').eq(i).on('click', function(){
+                $('.modal').html($('<ul>'));
+                $.each(item.citations, function(k, stuff){
+                    // console.log(stuff);
+                    $('.modal').append($('<li>'+stuff+'</li>'));
+                });
             });
-            $('.modal').append($('</div>'));
-
-            // $('.modal').html($('<div>\
-            //                         <img src="'+who.imagePath+'" alt="faculty image"/>\
-            //                         <h4>'+who.name+'</h4>\
-            //                         <h4>'+who.title+'</h4>\
-            //                         <h4>\"'+who.tagline+'\"</h4>\
-            //                         <h4>'+who.interestArea+'</h4>\
-            //                         <h4>'+who.website+'</h4>\
-            //                         <h4>'+who.office+'</h4>\
-            //                         <h4>'+who.phone+'</h4>\
-            //                         <h4>'+who.email+'</h4>\
-            //                         <h4>'+who.twitter+'</h4>\
-            //                         <h4>'+who.facebook+'</h4>\
-            //                     </div>'));
+            $('.modal').append($('</ul>'));
+            //end of research by interest
         });
-        // $('.modal').html($('test'));
-        //end of people/faculty/
+    });
+
+    //research 2
+    //get images first
+    getData('get', {path:'/people/faculty'},'#research-faculty').done(function(min){
+        var isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
+        $.each(min.faculty, function(i, items){
+            $('#research-faculty').append('<div data-uname="'+items.username+'"><a href="#ex1" rel="modal:open"><img src="'+ this.imagePath + '"/></a></div>');
+            $('#research-faculty').find('div').on('click', function(){
+                //get research data
+                // console.log($(this).attr('data-uname'));
+                uname = $(this).attr('data-uname');
+            });
+        });
+        //get research data
+        getData('get', {path:'/research/'},'.modal').done(function(data){
+            console.log(uname);
+            $.each(data.byFaculty, function(i, items){
+                console.log(data.byFaculty);
+            });
+            // $('.modal').html($('<li>'+stuff+'</li>'));
+        });
     });
     //end of $(document).ready();
 });
 
+function helper(){
+    
+}
 //inside getData()
-$('.faculty').on('click', function(){
-    var me = getAttributesByName(json.faculty, 'username', $(this).attr('data-uname'));
-    console.log(me);
-});
+// $('.faculty').on('click', function(){
+//     var me = getAttributesByName(json.faculty, 'username', $(this).attr('data-uname'));
+//     console.log(me);
+// });
 
-//helper function for people
+//helper function for /people/
 function getAttributesByName(arr, name, val){
+    // console.log('getAttr called');
     // console.log(arr);
     var result = null;
     $.each(arr, function(){
@@ -260,11 +262,11 @@ function getData(getPost, d, idForSpinner){
     }); 
 }
 
-//inside getData()
-$('.faculty').on('click', function(){
-    var me = getAttributesByName(json.faculty, 'username', $(this).attr('data-uname'));
-    console.log(me);
-});
+// //inside getData()
+// $('.faculty').on('click', function(){
+//     var me = getAttributesByName(json.faculty, 'username', $(this).attr('data-uname'));
+//     // console.log(me);
+// });
 
 // //helper function
 // function getAttributesByName(arr, name, val){
@@ -276,3 +278,47 @@ $('.faculty').on('click', function(){
 //     });
 //     return result;
 // }
+
+
+//gets faculty or staff for the people section. 
+function getFacOrStaff(which, where){
+    getData('get', {path:'/people/' + which}, where).done(function(min){
+        var isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
+        var course = [];
+        $.each(min, function(i, item){
+            $.each(item, function(k, stuff){
+                $('#'+where).append('<div data-uname='+stuff.username+'><a href="#ex1" rel="modal:open"><h4>'+ stuff.name + '</h4></a></div>'); 
+            });
+        });
+        $('#'+where+' div').on('click', function(){
+            if(which === 'faculty'){
+                whichFacOrStaff = min.faculty;
+            }
+            else{
+                whichFacOrStaff = min.staff;
+                // console.log(min.staff);
+            }
+            //global on purpose, used in faculty research
+            var who = getAttributesByName(whichFacOrStaff, 'username', $(this).attr('data-uname'));
+            //console.log(who);
+            $('.modal').html($('<div><img src="'+who.imagePath+'" alt="faculty/staff image"/>'));
+            $.each(who, function(index, item){
+                if(!item == null || !item == ' ' && index != 'imagePath'){
+                    if(index == 'website'){
+                        $('.modal').append('<p><span class="caps">'+index + '</span> <a href="' +item+'" target="_blank">'+item+'</a></p>');
+                    }
+                    else if(index == 'email'){
+                        $('.modal').append('<p><span class="caps">'+index + '</span> <a href="mailto:'+item+'">'+item+'<a></p>');
+                    }
+                    else{
+                        $('.modal').append('<p><span class="caps">'+index + '</span> ' +item+'</p>');
+                    }
+                    
+                }
+                // console.log('modal' + item);
+            });
+            $('.modal').append($('</div>'));
+        });
+        //end of people/faculty/
+    });
+}
