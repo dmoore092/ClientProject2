@@ -7,17 +7,24 @@
         <script src="assets/js/jquery.scrollify.js" type="text/javascript"></script>
         <script src="assets/js/consumeApi.js" type="text/javascript"></script>
         <script src="assets/js/jquery.big-slide.js"></script>
-        <!-- handles the page scrolling -->
-        <!-- <script type="text/javascript">$(function() {$.scrollify({section : ".sections",});});</script> -->
+
         <!-- Handles the navigation -->
         <script>$(document).ready(function() {$('.menu-link').bigSlide();});</script>
+        
         <!-- Handles modal -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
         
-        <!-- pagination -->
+        <!-- table-pagination -->
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+        <!-- news-pagination -->
+        <script src="assets/js/Client-Side-Pagination-Plugin-jQuery-cPager/js/cPager.js"></script>
+        <link rel="stylesheet" type="text/css" href="assets/js/Client-Side-Pagination-Plugin-jQuery-cPager/css/cPager.css">
+
+        <!-- magic scrolling -->
+        <script src="assets/js/animatescroll/animatescroll.js"></script>
 
         <link rel="stylesheet" type="text/css" href="assets/css/main.css">
         <title>IST Department at RIT</title>
@@ -26,31 +33,32 @@
         <a href="#menu" class="menu-link">&#9776;</a>
         <nav id="menu" class="panel" role="navigation">
                 <ul>
-                    <li><a href="/index.html#welcome-about">Welcome</a></li>
-                    <li><a href="/index.html#ugrad-deg">Our Undergraduate Degrees</a></li>
-                    <li><a href="/index.html#grad-deg">Our graduate Degrees</a></li>
-                    <li><a href="/index.html#ugrad-minors">Our Undergraduate Minors</a></li>
-                    <li><a href="/index.html#acad-exec">Academic Excellence</a></li>
-                    <li><a href="/index.html#stu-work">Where Our Students Work</a></li>
-                    <li><a href="/index.html#people">Our People</a></li>
-                    <li><a href="/index.html#research-fac-interest">Research Faculty: Areas of Interest</a></li>
-                    <li><a href="/index.html#research-fac-lookup">Research Faculty: Lookup by Faculty</a></li>
-                    <li><a href="/index.html#stu-resources">Student Resources</a></li>
-                    <li><a href="/index.html#social">Our Social Presence</a></li>
+                    <li><a onclick="$('#section1').animatescroll({scrollSpeed:2000,easing:'easeOutElastic'});">Welcome</a></li>
+                    <li><a onclick="$('#section2').animatescroll({scrollSpeed:2000,easing:'easeOutElastic'});">Our Undergraduate Degrees</a></li>
+                    <li><a onclick="$('#section3').animatescroll({scrollSpeed:2000,easing:'easeOutElastic'});">Our graduate Degrees</a></li>
+                    <li><a onclick="$('#section4').animatescroll({scrollSpeed:2000,easing:'easeOutElastic'});">Our Undergraduate Minors</a></li>
+                    <li><a onclick="$('#section5').animatescroll({scrollSpeed:2000,easing:'easeOutElastic'});">Academic Excellence</a></li>
+                    <li><a onclick="$('#section6').animatescroll({scrollSpeed:2000,easing:'easeOutElastic'});">Where Our Students Work</a></li>
+                    <li><a onclick="$('#section7').animatescroll({scrollSpeed:2000,easing:'easeOutElastic'});">Our People</a></li>
+                    <li><a onclick="$('#section8').animatescroll({scrollSpeed:2000,easing:'easeOutElastic'});">Research Faculty: Areas of Interest</a></li>
+                    <li><a onclick="$('#section9').animatescroll({scrollSpeed:2000,easing:'easeOutElastic'});">Research Faculty: Lookup by Faculty</a></li>
+                    <li><a onclick="$('#section10').animatescroll({scrollSpeed:2000,easing:'easeOutElastic'});">Student Resources</a></li>
+                    <li><a onclick="$('#section11').animatescroll({scrollSpeed:2000,easing:'easeOutElastic'});">Our Social Presence</a></li>
                 </ul>
         </nav>
         <div class="main wrap push" >
 <!-- section 1 -->
-            <section class="main-wrapper sections">
+            <section id="section1" class="main-wrapper sections">
                 <div>
                     <p><span style="color:#F76902;">Information</span> <span style="color:white;">Sciences and Technologies @ RIT</span></p>
                     <div id="welcome-about" class="black-bg-section"></div>
+                    <div id="news" class="black-bg-section"></div>
                 </div>
                 <div id="welcome-arrow">&#8595;</div>
             </section>
 <!-- End of section 1 -->
 <!-- section 2 -->
-            <section class="main-wrapper sections">
+            <section id="section2" class="main-wrapper sections">
                 <div>
                     <p><span style="color:white">Our </span><span style="color:#F76902;">Undergraduate</span><span style="color:white;"> Degrees</span></p>
                     <div id="ugrad-deg" class="black-bg-section"></div>
@@ -58,7 +66,7 @@
             </section>
 <!-- End of section 2 -->
 <!-- section 3 -->
-            <section class="main-wrapper sections">
+            <section id="section3" class="main-wrapper sections">
                 <div>
                     <p><span style="color:white">Our </span><span style="color:#F76902;">Graduate</span><span style="color:white;"> Degrees</span></p>
                     <div id="grad-deg" class="black-bg-section"></div>
@@ -66,7 +74,7 @@
             </section>
 <!-- End of section 3 -->
 <!-- section 4 -->
-            <section class="main-wrapper sections">
+            <section id="section4" class="main-wrapper sections">
                     <div>
                         <p><span style="color:white">Our </span><span style="color:#F76902;">Undergraduate</span><span style="color:white;"> Minors</span></p>
                         <div id="ugrad-minors" class="black-bg-section"></div>
@@ -74,62 +82,90 @@
                 </section>
 <!-- End of section 4 -->
 <!-- section 5 -->
-        <section class="main-wrapper sections">
-            <div>
-                <p><span style="color:#F76902;">Academic</span> <span style="color:white;">Excellence Equals Career Performance</span></p>
-                <div id="employment" class="black-bg-section"></div>
-            </div>
-        </section>
+            <section id="section5" class="main-wrapper sections">
+                <div>
+                    <p><span style="color:#F76902;">Academic</span> <span style="color:white;">Excellence Equals Career Performance</span></p>
+                    <div id="employment" class="black-bg-section"></div>
+                </div>
+            </section>
 <!-- End of section 5 -->
 <!-- section 6 -->
-        <section class="main-wrapper sections">
-            <div>
-                    <p><span style="color:white;">Where our <span style="color:#F76902;">students</span> <span style="color:white;">work</span></p>
-                <div id="map" class="black-bg-section"></iframe></div>
-            </div>
-        </section>
+            <section id="section6" class="main-wrapper sections">
+                <div>
+                        <p><span style="color:white;">Where our <span style="color:#F76902;">students</span> <span style="color:white;">work</span></p>
+                    <div id="map" class="black-bg-section"></iframe></div>
+                </div>
+            </section>
 <!-- End of section 6 -->
 <!-- section 7 -->
-        <section class="main-wrapper sections">
-            <div>
-                <p><span style="color:white;">Our</span> <span style="color:#F76902;">People</span></p>
-                <p style="color:white;">Faculty</p>
-                <div id="people-faculty" class="black-bg-section"></div>
-            </div>
-        </section>
+            <section id="section7" class="main-wrapper sections">
+                <div>
+                    <p><span style="color:white;">Our</span> <span style="color:#F76902;">People</span></p>
+                    <p style="color:white;">Faculty</p>
+                    <div id="people-faculty" class="black-bg-section"></div>
+                </div>
+            </section>
 <!-- End of section 7 -->
 <!-- section 8 -->
-        <section class="main-wrapper sections">
-            <div>
-                <p><span style="color:white;">Our</span> <span style="color:#F76902;">People</span></p>
-                <p style="color:white;">Staff</p>
-                <div id="people-staff" class="black-bg-section"></div>
-            </div>
-        </section>
+            <section id="section8" class="main-wrapper sections">
+                <div>
+                    <p><span style="color:white;">Our</span> <span style="color:#F76902;">People</span></p>
+                    <p style="color:white;">Staff</p>
+                    <div id="people-staff" class="black-bg-section"></div>
+                </div>
+            </section>
 <!-- End of section 8 -->
 <!-- section 9 -->
-        <section class="main-wrapper sections">
-            <div>
-                <p><span style="color:white;">Faculty Research: Our areas of</span> <span style="color:#F76902;">interest</span></p>
-                <div id="research-interest" class="black-bg-section"></div>
-            </div>
-        </section>
+            <section id="section9" class="main-wrapper sections">
+                <div>
+                    <p><span style="color:white;">Faculty Research: Our areas of</span> <span style="color:#F76902;">interest</span></p>
+                    <div id="research-interest" class="black-bg-section"></div>
+                </div>
+            </section>
 <!-- End of section 9 -->
 <!-- section 10 -->
-        <section class="main-wrapper sections">
-            <div>
-                <p><span style="color:white;">Faculty Research: Lookup by</span> <span style="color:#F76902;">Faculty</span></p>
-                <div id="research-faculty" class="black-bg-section"></div>
-            </div>
-        </section>
+            <section id="section10" class="main-wrapper sections">
+                <div>
+                    <p><span style="color:white;">Faculty Research: Lookup by</span> <span style="color:#F76902;">Faculty</span></p>
+                    <div id="research-faculty" class="black-bg-section"></div>
+                </div>
+            </section>
 <!-- End of section 10 -->
 <!-- section 11 -->
-            <section id="stu-resources" class="sections">Student Resources</section>
+            <section id="section11" class="main-wrapper sections">
+                <div>
+                    <p><span style="color:white;">Student</span> <span style="color:#F76902;">Resources</span></p>
+                    <div id="resources" class="black-bg-section"></div>
+                </div>
+            </section>
 <!-- End of section 11 -->
 <!-- section 12 -->
-            <section id="social" class="sections">Our Social Presence</section>
-<!-- End of section 12 -->
+            <section id="section12" class="main-wrapper sections">
+                <div>
+                    <p><span style="color:white;">Our</span> <span style="color:#F76902;">Social</span><span style="color:white;"> Presence</span></p>
+                    <div id="social" class="black-bg-section"></div>
+                </div>
+            </section>
+<!-- End of section 13 -->
+            <section id="section13" class="main-wrapper sections">
+                <div>
+                    <p><span style="color:white;">Footer</span></p>
+                    <div id="footer" class="black-bg-section"></div>
+                </div>
+            </section>
         </div> <!-- end of class="main wrap push"-->
         <div id="ex1" class="modal"><a href="#" rel="modal:close"></a></div>
     </body>
 </html>
+
+<!-- href="/index.html#welcome-about"        
+href="/index.html#ugrad-deg"            
+href="/index.html#grad-deg"             
+href="/index.html#ugrad-minors"         
+href="/index.html#acad-exec"            
+href="/index.html#stu-work"             
+href="/index.html#people"               
+href="/index.html#research-fac-interest"
+href="/index.html#research-fac-lookup"  
+href="/index.html#stu-resources"        
+href="/index.html#social"                -->

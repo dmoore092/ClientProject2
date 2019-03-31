@@ -11,9 +11,11 @@ Redesign https://ist.rit.edu/index.php using JQuery while consuming http://www.i
 ## Site Features
 * Mobile First Design
 * JQuery Plugins(4)
-  * Google Maps
-  * Scrollify https://github.com/lukehaas/Scrollify
-  * BigSlide http://ascott1.github.io/bigSlide.js/
-  * Jquery Modal https://jquerymodal.com/
+  * UI Plugins
+    * DataTables https://datatables.net
+    * cPager https://www.jqueryscript.net/other/Client-Side-Pagination-Plugin-jQuery-cPager.html
+    * BigSlide http://ascott1.github.io/bigSlide.js/
+    * Jquery Modal https://jquerymodal.com/
+    * cPager https://www.jqueryscript.net/other/Client-Side-Pagination-Plugin-jQuery-cPager.html
 * 
 *
