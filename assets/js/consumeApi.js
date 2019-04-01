@@ -103,28 +103,43 @@ $(document).ready(function(){
     ///employment/
     getData('get', {path:'/employment/'},'#employment').done(function(min){
         var stuff = [];
+
         $.each(min, function(i, item){
-            $('#employment').append('<h4 class="emp-title">'+item.title+'</h4>');
+            // $('#employment').append('<h4 class="emp-title">'+item.title+'</h4>');
             $.each(item, function(j, content){
                 stuff.push(content) 
             });
         });
-        $('.emp-title:first').after('<p>'+stuff[1][1].description+'</p>');
-        $('.emp-title:nth-of-type(2)').after('<h5>'+stuff[3][0].value+'</h5><p>'+stuff[3][0].description+'</p>');``
-        $('.emp-title:nth-of-type(2)').after('<h5>'+stuff[3][1].value+'</h5><p>'+stuff[3][1].description+'</p>');
-        $('.emp-title:nth-of-type(2)').after('<h5>'+stuff[3][2].value+'</h5><p>'+stuff[3][2].description+'</p>');
-        $('.emp-title:nth-of-type(2)').after('<h5>'+stuff[3][3].value+'</h5><p>'+stuff[3][3].description+'</p>');
+        console.log(stuff);
+        // $('#employment').append('<p>'+stuff[0]+'</p>');//Academic Excellent Equals Career Performance
+        $('#employment').append('<h4>'+stuff[1][0].title+'</h4>');//Employment
+        $('#employment').append('<p>'+stuff[1][0].description+'</p>');//IST grads are blah blah
 
+        $('#employment').append('<h4>'+stuff[1][1].title+'</h4>');//Cooperative Education
+        $('#employment').append('<p>'+stuff[1][1].description+'</p>');//Cooperative Ed blah blah
+
+        $('#employment').append('<h4>'+stuff[2]+'</h4>');//Degree stats
+        $('#employment').append('<div id="stats-wrapper"></div>');
+        $('#stats-wrapper').append('<div class="stats-wrap-children"><div class="stats-num">'+stuff[3][0].value+'</div><div class="stats-description">'+stuff[3][0].description+'</div></div>');
+        $('#stats-wrapper').append('<div class="stats-wrap-children"><div class="stats-num">'+stuff[3][1].value+'</div><div class="stats-description">'+stuff[3][1].description+'</div></div>');
+        $('#stats-wrapper').append('<div class="stats-wrap-children"><div class="stats-num">'+stuff[3][2].value+'</div><div class="stats-description">'+stuff[3][2].description+'</div></div>');
+        $('#stats-wrapper').append('<div class="stats-wrap-children"><div class="stats-num">'+stuff[3][3].value+'</div><div class="stats-description">'+stuff[3][3].description+'</div></div>');
+
+        $('#employment').append('<h4>'+stuff[4]+'</h4>');
+        $('#employment').append('<div id="employers-wrapper"><div>');
         $.each(stuff[5], function(k, emps){
-            $('.emp-title:nth-of-type(3)').after('<p>'+emps+'</p>');
+            $('#employers-wrapper').append('<div class="employers">'+emps+'</div></div>');
         });
         
+        $('#employment').append('<h4>'+stuff[6]+'</h4>');
+        $('#employment').append('<div id="careers-wrapper"><div>');
         $.each(stuff[7], function(l, careers){
-            $('.emp-title:nth-of-type(4)').after('<p>'+careers+'</p>');
+            $('#careers-wrapper').append('<div class="careers">'+careers+'</div>');
         });
 
         //coop table
-        $('.emp-title:nth-of-type(5)').after('<a href="#ex1" rel="modal:open" id="coop">See Our Co-ops!</a>');
+        $('#employment').append('<div id="table-wrapper"></div>');
+        $('#table-wrapper').append('<a href="#ex1" rel="modal:open" id="coop">See Our Co-ops!</a>');
         $('#coop').on('click', function(){
             $('.modal').html($('<div>\
                                 <table id="coop-table">\
@@ -156,7 +171,7 @@ $(document).ready(function(){
 
         });
         //prof table
-        $('.emp-title:nth-of-type(6)').after('<a href="#ex1" rel="modal:open" id="prof">See Where our grads have gone to work!!</a>');
+        $('#table-wrapper').append('<a href="#ex1" rel="modal:open" id="prof">See Where our grads have gone to work!!</a>');
         $('#prof').on('click', function(){
             $('.modal').html($('<div>\
                                     <table id="prof-table">\

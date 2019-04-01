@@ -18,6 +18,9 @@ body{
     background-attachment: fixed;
     background-size: cover;
 }
+/* 
+*   Begin Navigation Section
+*/
 .menu-link{
     position: fixed;
     top: 0%;
@@ -50,31 +53,11 @@ body{
 .caps{
     text-transform:capitalize;
 }
-.main{
-    clear: both;
-}
-.main section{
-    height: 100vh;    
-}
-#welcome-about{
-    border: 2px solid black;
-    background-color: white;
-    overflow: auto;
-    margin: auto;
-    margin-top: 15px;
-    border-radius: 10px;
-    padding: 15px;
-    font-size: .75rem;
-}
-#welcome-arrow{
-    color: white;
-    font-size: 3rem;
-    text-align: center;
-    margin-top: 30%;
-    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-}
-
-/* Welcome Section */
+/* 
+*   End Navigation Section
+*   Begin Base Struture
+*       Creates the Black transparent bg, white bg, and modal
+*/
 .main-wrapper>div:nth-of-type(1){
     border: 2px solid black;
     border-radius: 10px;
@@ -84,40 +67,30 @@ body{
     margin: auto;
     font-size: 1.5rem;
     background-color: #F76902;
-    /* background-color: rgba(247, 105, 2, 0.7); */
     background-color: rgba(0, 0, 0, 0.7);
     padding: 40px 20px;
     margin-top: 20%;
-    /* opacity: .5; */
 }
-/* Our Undergraduate Degrees */
-.main section:nth-child(2){
-    
+.white-bg-section{
+    background-color: white;
+    border-radius: 15px;
+    font-size: .9rem;
+    padding: 15px;
+    margin-top:15px;
 }
+.modal{
+    max-width: 80vw;
+}
+/* 
+*   End Base Structure 
+*   Beging section specific design
+*/
 #ugrad-deg img, #grad-deg img{
     background-color: #F76902;
     border-radius: 50px;
     width: 50%;
     margin-top: 10px;
-}
-.black-bg-section{
-    background-color: white;
-    border-radius: 10px;
-    font-size: .9rem;
-    padding: 10px;
-    margin-top:10px;
-}
-/* Our graduate Degrees */
-.main section:nth-child(3){
-    /* background: blue; */
-}
-/* Our Undergraduate Minors */
-.main section:nth-child(4){
-    /* background: orange; */
-}
-#ugrad-minors{
-    /* max-height: 100vh; */
-    /* overflow: auto; */
+    width: 30%;
 }
 #ugrad-minors div:nth-child(odd){
     background: #F76902;
@@ -130,42 +103,58 @@ body{
     padding: 10px;
     text-decoration: none;
 }
-.minor-modal{
-    max-height: 80vh;
-    overflow: auto;
+/*  */
+#employment>h4{
+    border-bottom: 1px solid #F76902;
+    margin-bottom: 5px;
+    padding-bottom: 2px;
+    margin-top: 25px;
 }
-/* Academic Excellence Equals Career Performance */
-.main section:nth-child(5){
-    /* background: purple; */
+#employment p, h5{
+    text-align: left;
 }
-/* Where Our Students Work */
-.main section:nth-child(6){
-    /* background: yellowgreen; */
+#stats-wrapper, #employers-wrapper, #careers-wrapper{
+    display: flex;
+    flex-flow: wrap;
+    justify-content: space-around;
+    /* border: 4px solid green; */
+    width: 100%;
 }
-/* Our People */
-.main section:nth-child(7){
-    /* background: greenyellow; */
+.stats-wrap-children{
+    width: 100%;
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color: #F76902;
+    margin-top: 25px;
+    padding: 25px 15px;
 }
-/* Faculty Research: Areas of Interest */
-.main section:nth-child(8){
-    /* background: orchid; */
+.stats-description{
+    border-top: 1px solid black;
 }
-/* Research Faculty: Lookup by Faculty */
-.main section:nth-child(9){
-    /* background: magenta; */
+.employers{
+    width: 100%;
+    border: 2px solid white;
+    background-color: rgba(0, 0, 0, .9);
+    color: white;
+    margin-top: 25px;
+    padding: 25px 15px;
 }
-/* Student Resources */
-.main section:nth-child(10){
-    /* background: salmon; */
+.careers{
+    width: 100%;
+    border: 2px solid black;
+    border-radius: 500px;
+    background-color: #F76902;
+    margin-top: 25px;
+    padding: 25px 15px;
 }
-/* Our Social Presence */
-.main section:nth-child(11){
-    /* background: pink; */
-}
+/*  */
+/* 
+*   Begin Non-Mobile
+*/
 @media only screen and (min-width: 600px) {
     .main-wrapper>div:nth-of-type(1){
         width: 70%;
-        margin-top: 15%;
+        margin-top: 5%;
         border: 2px solid white;
         /* margin-top: 3%; */
     }
@@ -178,15 +167,15 @@ body{
     #welcome>div:nth-of-type(2){
         font-size: 3rem;
     }
-    #welcome-about{
+    /* #welcome-about{
         display: block;
     }
     #welcome-arrow{
         margin-top: 10%;
-    }
+    } */
 
     #ugrad-deg img, #grad-deg img{
-        width: 10%;
+        width: 7%;
     }
     #ugrad-minors{
         /* height: 80vh; */
@@ -198,5 +187,28 @@ body{
     /* undergrad-minor main section location` */
     section:nth-of-type(4)>div:nth-of-type(2){
         margin-top: 10%;
+    }
+    .stats-description{
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 0.3s linear, opacity 0.3s linear;
+
+    }
+    .stats-wrap-children{
+        width: 22%;
+        border: 2px solid black;
+        
+    }
+    .stats-wrap-children:hover .stats-description{
+        visibility: visible;
+        opacity: 1;
+    }
+    .employers{
+        width: 15%;
+        padding: 30px;
+    }
+    .careers{
+        width: 15%;
+        /* padding: 30px; */
     }
   }
