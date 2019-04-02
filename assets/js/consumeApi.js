@@ -111,35 +111,41 @@ $(document).ready(function(){
             });
         });
         console.log(stuff);
-        // $('#employment').append('<p>'+stuff[0]+'</p>');//Academic Excellent Equals Career Performance
-        $('#employment').append('<h4>'+stuff[1][0].title+'</h4>');//Employment
-        $('#employment').append('<p>'+stuff[1][0].description+'</p>');//IST grads are blah blah
+        $('#employment').append('<div class="emp-emp-wrapper"></div>');
+        $('.emp-emp-wrapper').append('<p class="emp-headers">'+stuff[1][0].title+'</p>');//Employment
+        $('.emp-emp-wrapper').append('<p>'+stuff[1][0].description+'</p>');//IST grads are blah blah
 
-        $('#employment').append('<h4>'+stuff[1][1].title+'</h4>');//Cooperative Education
-        $('#employment').append('<p>'+stuff[1][1].description+'</p>');//Cooperative Ed blah blah
+        $('#employment').append('<div class="emp-coop-wrapper"></div>');
+        $('.emp-coop-wrapper').append('<p class="emp-headers">'+stuff[1][1].title+'</p>');//Cooperative Education
+        $('.emp-coop-wrapper').append('<p>'+stuff[1][1].description+'</p>');//Cooperative Ed blah blah
 
-        $('#employment').append('<h4>'+stuff[2]+'</h4>');//Degree stats
-        $('#employment').append('<div id="stats-wrapper"></div>');
+        $('#employment').append('<div class="emp-stats-wrapper"></div>');
+        $('.emp-stats-wrapper').append('<p class="emp-headers">'+stuff[2]+'</p>');//Degree stats
+        $('.emp-stats-wrapper').append('<div id="stats-wrapper"></div>');
         $('#stats-wrapper').append('<div class="stats-wrap-children"><div class="stats-num">'+stuff[3][0].value+'</div><div class="stats-description">'+stuff[3][0].description+'</div></div>');
         $('#stats-wrapper').append('<div class="stats-wrap-children"><div class="stats-num">'+stuff[3][1].value+'</div><div class="stats-description">'+stuff[3][1].description+'</div></div>');
         $('#stats-wrapper').append('<div class="stats-wrap-children"><div class="stats-num">'+stuff[3][2].value+'</div><div class="stats-description">'+stuff[3][2].description+'</div></div>');
         $('#stats-wrapper').append('<div class="stats-wrap-children"><div class="stats-num">'+stuff[3][3].value+'</div><div class="stats-description">'+stuff[3][3].description+'</div></div>');
 
-        $('#employment').append('<h4>'+stuff[4]+'</h4>');
-        $('#employment').append('<div id="employers-wrapper"><div>');
+        $('#employment').append('<div class="emp-emprs-wrapper"></div>');
+        $('.emp-emprs-wrapper').append('<p class="emp-headers">'+stuff[4]+'</p>');//employers
+        $('.emp-emprs-wrapper').append('<div id="employers-wrapper"><div>');
         $.each(stuff[5], function(k, emps){
             $('#employers-wrapper').append('<div class="employers">'+emps+'</div></div>');
         });
         
-        $('#employment').append('<h4>'+stuff[6]+'</h4>');
-        $('#employment').append('<div id="careers-wrapper"><div>');
+        $('#employment').append('<div class="emp-careers-wrapper"></div>');
+        $('.emp-careers-wrapper').append('<p class="emp-headers">'+stuff[6]+'</p>'); //careers
+        $('.emp-careers-wrapper').append('<div id="careers-wrapper"><div>');
         $.each(stuff[7], function(l, careers){
             $('#careers-wrapper').append('<div class="careers">'+careers+'</div>');
         });
 
         //coop table
-        $('#employment').append('<div id="table-wrapper"></div>');
-        $('#table-wrapper').append('<a href="#ex1" rel="modal:open" id="coop">See Our Co-ops!</a>');
+        $('#employment').append('<div class="emp-tables-wrapper"></div>');
+        $('.emp-tables-wrapper').append('<p class="emp-headers">Click below to see where our students get placed!</p>');
+        $('.emp-tables-wrapper').append('<div id="table-wrapper"></div>');
+        $('#table-wrapper').append('<a href="#ex1" rel="modal:open" id="coop">Co-ops</a>');
         $('#coop').on('click', function(){
             $('.modal').html($('<div>\
                                 <table id="coop-table">\
@@ -171,7 +177,7 @@ $(document).ready(function(){
 
         });
         //prof table
-        $('#table-wrapper').append('<a href="#ex1" rel="modal:open" id="prof">See Where our grads have gone to work!!</a>');
+        $('#table-wrapper').append('<a href="#ex1" rel="modal:open" id="prof">Jobs</a>');
         $('#prof').on('click', function(){
             $('.modal').html($('<div>\
                                     <table id="prof-table">\
@@ -217,9 +223,10 @@ $(document).ready(function(){
         var isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
         //by interestArea
         // var degimages = ["assets/images/icons/presentation.png", "assets/images/icons/head.png", "assets/images/icons/setting.png"];
+        $('#research-interest').append('<div id="research-interest-wrapper"></div>');
         $.each(min.byInterestArea, function(i, item){
-            $('#research-interest').append('<div><a href="#ex1" rel="modal:open"><h4>'+ this.areaName + '</h4></a></div>');
-            $('#research-interest').find('div').eq(i).on('click', function(){
+            $('#research-interest-wrapper').append('<span class="research-interest-child"><a href="#ex1" rel="modal:open">'+ this.areaName + '</a></span>');
+            $('#research-interest-wrapper').find('span').eq(i).on('click', function(){
                 $('.modal').html($('<ul>'));
                 $.each(item.citations, function(k, stuff){
                     $('.modal').append($('<li>'+stuff+'</li>'));
@@ -396,19 +403,22 @@ function getFacOrStaff(which, where){
     getData('get', {path:'/people/' + which}, where).done(function(min){
         var isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
         var course = [];
+        $('#' + where).append('<div class="'+where+'-wrapper"></div>');
         $.each(min, function(i, item){
+            var count = 1;
             $.each(item, function(k, stuff){
-                $('#'+where).append('<div data-uname='+stuff.username+'><a href="#ex1" rel="modal:open"><h4>'+ stuff.name + '</h4></a></div>'); 
+                $('.'+where+'-wrapper').append('<span class="fac-staff-children" data-uname='+stuff.username+'><a href="#ex1" rel="modal:open">'+ stuff.name + '</a></span>'); 
+                count++;
             });
         });
-        $('#'+where+' div').on('click', function(){
+        $('#'+where+' span').on('click', function(){
             if(which === 'faculty'){
                 whichFacOrStaff = min.faculty;
             }
             else{
                 whichFacOrStaff = min.staff;
             }
-            //global on purpose, used in faculty research
+            
             var who = getAttributesByName(whichFacOrStaff, 'username', $(this).attr('data-uname'));
             $('.modal').html($('<div><img src="'+who.imagePath+'" alt="faculty/staff image"/>'));
             $.each(who, function(index, item){

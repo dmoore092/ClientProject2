@@ -104,23 +104,22 @@ body{
     text-decoration: none;
 }
 /*  */
-#employment>h4{
-    border-bottom: 1px solid #F76902;
-    margin-bottom: 5px;
-    padding-bottom: 2px;
-    margin-top: 25px;
+.emp-headers{
+    /* border-bottom: 1px solid #F76902; */
+    background-color: #F76902;
+    color: white;
+    margin: 50px 0 10px 0;
+    /* padding-bottom: 2px; */
+    font-size: 1.75rem;
 }
-#employment p, h5{
-    text-align: left;
-}
-#stats-wrapper, #employers-wrapper, #careers-wrapper{
+#stats-wrapper, #employers-wrapper, #careers-wrapper, 
+#table-wrapper{
     display: flex;
     flex-flow: wrap;
     justify-content: space-around;
-    /* border: 4px solid green; */
     width: 100%;
 }
-.stats-wrap-children{
+.stats-wrap-children, #coop, #prof{
     width: 100%;
     border: 2px solid black;
     border-radius: 5px;
@@ -147,13 +146,79 @@ body{
     margin-top: 25px;
     padding: 25px 15px;
 }
+#coop, #prof{
+    background-color: white;
+}
+#table-wrapper a{
+    text-decoration: none;
+}
+#table-wrapper a:visited{
+    color: black;
+}
+.people-faculty-wrapper, .people-staff-wrapper{
+    /* border: 2px solid black; */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.fac-staff-children{
+    border: 1px solid black;
+    width: 80%;
+    height: 100px;
+    margin: auto;
+    background-color: #F76902;
+}
+.fac-staff-children a{
+    margin: auto;
+    line-height: 90px;
+    text-align: center;
+}
+.fac-staff-children a:visited{
+    color: white;
+}
+.fac-staff-children a:visited,
+.fac-staff-children a:link,
+.fac-staff-children a:active{
+    color: white;
+}
+#research-interest a:visited,
+#research-interest a:link,
+#research-interest a:visited{
+    color: black;
+}
+#research-interest-wrapper{
+    display: flex;
+    flex-direction: wrap;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+#research-interest span{
+    border: 2px solid black;
+    width: 100%;
+    height: 50px;
+    margin-bottom: 25px;
+    line-height: 45px;
+}
+#research-faculty span{
+    /* display: block; */
+    /* border: 2px solid black; */
+    width: 100%;
+    /* height: 50px; */
+    margin-bottom: 25px;
+}
+#research-faculty img{
+    max-width: 30%;
+    max-height: 90px;
+    margin-right: 15px;
+}
 /*  */
 /* 
 *   Begin Non-Mobile
 */
 @media only screen and (min-width: 600px) {
     .main-wrapper>div:nth-of-type(1){
-        width: 70%;
+        width: 80%;
         margin-top: 5%;
         border: 2px solid white;
         /* margin-top: 3%; */
@@ -188,20 +253,10 @@ body{
     section:nth-of-type(4)>div:nth-of-type(2){
         margin-top: 10%;
     }
-    .stats-description{
-        visibility: hidden;
-        opacity: 0;
-        transition: visibility 0.3s linear, opacity 0.3s linear;
-
-    }
     .stats-wrap-children{
         width: 22%;
         border: 2px solid black;
         
-    }
-    .stats-wrap-children:hover .stats-description{
-        visibility: visible;
-        opacity: 1;
     }
     .employers{
         width: 15%;
@@ -211,4 +266,36 @@ body{
         width: 15%;
         /* padding: 30px; */
     }
-  }
+    #table-wrapper a{
+        width: 30%;
+    }
+    #coop:hover, #prof:hover,
+    #research-interest span:hover{
+        background-color: #F76902;
+        color: white;
+    }
+    .emp-emp-wrapper, .emp-coop-wrapper,
+    .emp-stats-wrapper, .emp-emprs-wrapper,
+    .emp-careers-wrapper, .emp-tables-wrapper{
+        border-left: 1px solid #F76902;
+        border-right: 1px solid #F76902;
+        border-bottom: 1px solid #F76902;
+        padding-bottom: 20px;
+    }
+    .fac-staff-children{
+        width: 20%;
+        border-left: 1px solid black;
+        border-bottom: 1px solid black;
+    }
+    #research-interest span{
+        width: 30%;
+    }
+    #research-faculty div{
+        display: inline;
+        width: 10%;
+    }
+    #research-faculty img{
+        max-width: 10%;
+        max-height: 90px;
+    }
+}
