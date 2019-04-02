@@ -15,7 +15,6 @@ $(document).ready(function(){
     //news/
     getData('get', {path:'/news/'},'#news').done(function(min){
         //var isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
-        // console.log(min.older);
         $('#news').append('<h4><a href="#ex1" rel="modal:open">Check out the latest news!</a></h4>');
         $('#news').on('click', function(){
             $('.modal').html('<div class="turn-page" id="pager"></div>');
@@ -36,7 +35,6 @@ $(document).ready(function(){
             });
             
         });
-        // console.log(min);  
     });
     
     // /degrees/undergraduate/
@@ -87,9 +85,7 @@ $(document).ready(function(){
     getData('get', {path:'/minors/'},'#ugrad-minors').done(function(min){
         var isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
         var course = [];
-        // var degimages = ["assets/images/icons/presentation.png", "assets/images/icons/head.png", "assets/images/icons/setting.png"];
         $.each(min.UgMinors, function(i, item){
-            // $('#ugrad-minors').append('<div><a href="#ex1" rel="modal:open"><img src="'+degimages[i]+'" alt="icon" /></a></p>');
             $('#ugrad-minors').append('<div><a href="#ex1" rel="modal:open"><h4>'+ this.title + '</h4></a></div>');
             $('#ugrad-minors').find('div').eq(i).on('click', function(){
                 $.each(item.courses, function(k, classes){
@@ -110,7 +106,7 @@ $(document).ready(function(){
                 stuff.push(content) 
             });
         });
-        console.log(stuff);
+        // console.log(stuff);
         $('#employment').append('<div class="emp-emp-wrapper"></div>');
         $('.emp-emp-wrapper').append('<p class="emp-headers">'+stuff[1][0].title+'</p>');//Employment
         $('.emp-emp-wrapper').append('<p>'+stuff[1][0].description+'</p>');//IST grads are blah blah
@@ -209,8 +205,7 @@ $(document).ready(function(){
                 scrollCollapse: true
             });
         });
-        //TURN THIS ON AT THE END!!!!!!!!!!!!!!!!!!!
-        // $('#map').html('<iframe src="http://ist.rit.edu/api/map.php" frameborder="0" width="100%" height="700px"></iframe>');
+        $('#map').html('<iframe src="http://ist.rit.edu/api/map.php" frameborder="0" width="100%" height="400px"></iframe>');
         //end of /employment/
     });
 
@@ -252,19 +247,12 @@ $(document).ready(function(){
     });
 
     //resources
-    getData('get', {path:'/resources/'},'#resources').done(function(min){
-        var isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
-        // console.log(min);
-        // $('#resources').append('<div class="resources" id="coop-enrollment" style="z-index: 999;"><a href="#ex1" rel="modal:open">Coop Enrollment</a></div>');
-        // $('#resources').append('<div class="resources" id="forms"><a href="#ex1" rel="modal:open">Forms</a></div>');
-        // $('#resources').append('<div class="resources" id="student-ambassadors"><a href="#ex1" rel="modal:open">Student Ambassadors</a></div>');
-        // $('#resources').append('<div class="resources" id="study-abroad"><a href="#ex1" rel="modal:open">Study Abroad</a></div>');
-        // $('#resources').append('<div class="resources" id="tutors-lab-info"><a href="#ex1" rel="modal:open">Tutors/Lab Information</a></div>');
-        // $('#resources').append('<div class="resources" id="student-advising-services"><a href="#ex1" rel="modal:open">Student Advising Services</a></div></div>');
-
+    getData('get', {path:'/resources/'},'#resources').done(function(min){        
+        //coop enrollment
         $('#accordion').append('<h3 class="selector" id="coop-enrollment"><a href="">Coop Enrollment</a></h3>');
         $('#accordion').append('<div><p>Please refer to our <a href="https://ist.rit.edu/assets/pdf/ISTCooperativeEmployment%20PolicyandProcedures.pdf" target=_blank>Coop Guide.</a></p></div>');
         
+        //forms
         $('#accordion').append('<h3 class="selector" id="forms"><a href="">Forms</a></h3>');
         $('#accordion').append('<div id="form-accordion"></div>');
             $('#form-accordion').append('<h4>Undergraduate Forms</h4>');
@@ -281,117 +269,62 @@ $(document).ready(function(){
             $('#ambo-accordion').append('<h4>'+min.studentAmbassadors.title+'</h4>');
                 $('#ambo-accordion').append('<img src="'+min.studentAmbassadors.ambassadorsImageSource+'" alt="image"/>');
                 $.each(min.studentAmbassadors.subSectionContent, function(k, things){
-                    //console.log(things);
                     $('#ambo-accordion').append('<div><div><h4>'+things.title+'</h4></div>');
                     $('#ambo-accordion').append('<div><p>'+things.description+'</p></div>');
                 });
             $('#ambo-accordion').append('<a href="'+min.studentAmbassadors.applicationFormLink+'" target=_blank>Apply Here!</a>');
         
+        //study abroad
         $('#accordion').append('<h3 class="selector" id="study-abroad"><a href="">Study Abroad</a></h3>');
         $('#accordion').append('<div id="study-abroad-accordion"></div>');
+            $('#study-abroad-accordion').append('<h4>'+min.studyAbroad.title+'</h4>');
+            $('#study-abroad-accordion').append('<div>'+min.studyAbroad.description+'</div>');
+            $('#study-abroad-accordion').append('<h5>'+min.studyAbroad.places[0].nameOfPlace+'</h5>');
+            $('#study-abroad-accordion').append('<div>'+min.studyAbroad.places[0].description+'</div>');
+            $('#study-abroad-accordion').append('<h5>'+min.studyAbroad.places[1].nameOfPlace+'</h5>');
+            $('#study-abroad-accordion').append('<div>'+min.studyAbroad.places[1].description+'</div>');
+                console.log(min);
 
+        //tutors/lab information
         $('#accordion').append('<h3 class="selector" id="tutors-lab-info"><a href="">Tutors/Lab Information</a></h3>');
         $('#accordion').append('<div id="tutors-accordion"></div>');
             $('#tutors-accordion').append('<h4>'+min.tutorsAndLabInformation.title+'</h4>');
             $('#tutors-accordion').append('<p>'+min.tutorsAndLabInformation.description+'</p>');
             $('#tutors-accordion').append('<a href="'+min.tutorsAndLabInformation.tutoringHoursLabLink+'" target=_blank>Click Here for Tutoring Hours.</a>');
         
+        //student advising services
         $('#accordion').append('<h3 class="selector" id="student-advising-services"><a href="">Student Advising Services</a></h3>');
         $('#accordion').append('<div id="advise-accordion"></div>')
             $('#advise-accordion').append('<h4>'+min.studentServices.title+'</h4>');
-                //Academic Advisors
-                $('#advise-accordion').append('<h4>'+min.studentServices.academicAdvisors.title+'</h4>');
-                    $('#advise-accordion').append('<p>'+min.studentServices.academicAdvisors.description+'</p>');
-                    $('#advise-accordion').append('<p><a href="'+min.studentServices.academicAdvisors.faq.contentHref+'" target=_blank>'+min.studentServices.academicAdvisors.faq.title+'</a></p>');
-                
-                // Faculty Advisors
-                $('#advise-accordion').append('<h4>'+min.studentServices.facultyAdvisors.title+'</h4>');
-                $('#advise-accordion').append('<p>'+min.studentServices.facultyAdvisors.description+'</p>');
-                
-                //IST Minor Advising
-                $('#advise-accordion').append('<h4>'+min.studentServices.istMinorAdvising.title+'</h4>');
-                    $.each(min.studentServices.istMinorAdvising.minorAdvisorInformation, function(l, goods){
-                        // console.log(goods);
-                        $('#advise-accordion').append('<p>'+goods.title+'</p>');
-                        $('#advise-accordion').append('<p>'+goods.advisor+'</p>');
-                        $('#advise-accordion').append('<p>'+goods.email+'</p>');
-                    });
-
-                //Professional Advisors
-                $('#advise-accordion').append('<h4>'+min.studentServices.professonalAdvisors.title+'</h4>');
-                    $.each(min.studentServices.professonalAdvisors.advisorInformation, function(m, effects){
-                        // console.log(effects);
-                        $('#advise-accordion').append('<p>'+effects.name+'</p>');
-                        $('#advise-accordion').append('<p>'+effects.department+'</p>');
-                        $('#advise-accordion').append('<p>'+effects.email+'</p>');
-                    });
-
-
-        // $('#coop-enrollment').on('click', function(){
-        //     $('.modal').html('<div><p>Please refer to our <a href="https://ist.rit.edu/assets/pdf/ISTCooperativeEmployment%20PolicyandProcedures.pdf" target=_blank>Coop Guide.</a></p></div>');
-        // });
-        // $('#forms').on('click', function(){
-        //     $('.modal').html('<h4>Undergraduate Forms</h4>');
-        //     $.each(min.forms.undergraduateForms, function(i, items){
-        //         // console.log(items);
-        //         $('.modal').append('<p><a href="https://ist.rit.edu/'+items.href+'" target=_blank>'+items.formName+'</a></p>');
-        //     });
-        //     $('.modal').append('<h4>Graduate Forms</h4>');
-        //     $.each(min.forms.graduateForms, function(j, stuff){
-        //         // console.log(stuff);
-        //         $('.modal').append('<p><a href="https://ist.rit.edu/'+stuff.href+'" target=_blank>'+stuff.formName+'</a></p>');
-        //     });
-        // });
-        // $('#student-ambassadors').on('click', function(){
-        //     //console.log(min.studentAmbassadors)
-        //     $('.modal').html('<div><h4>'+min.studentAmbassadors.title+'</h4>');
-        //     $('.modal').append('<img src="'+min.studentAmbassadors.ambassadorsImageSource+'" alt="image"></div>');
-        //     $.each(min.studentAmbassadors.subSectionContent, function(k, things){
-        //         //console.log(things);
-        //         $('.modal').append('<div><div><h4>'+things.title+'</h4></div>');
-        //         $('.modal').append('<div><p>'+things.description+'</p></div></div>');
-        //     });
-        //     $('.modal').append('<a href="'+min.studentAmbassadors.applicationFormLink+'" target=_blank>Apply Here!</a>');
-        // });
-        $('#tutors-lab-info').on('click', function(){
-            $('.modal').html('<h4>'+min.tutorsAndLabInformation.title+'</h4>');
-            $('.modal').append('<p>'+min.tutorsAndLabInformation.description+'</p>');
-            $('.modal').append('<a href="'+min.tutorsAndLabInformation.tutoringHoursLabLink+'" target=_blank>Click Here for Tutoring Hours.</a>');
-        });
-        $('#student-advising-services').on('click', function(){
-            // console.log(min.studentServices);
-            $('.modal').html('<h4>'+min.studentServices.title+'</h4>');
-
             //Academic Advisors
-            $('.modal').append('<h4>'+min.studentServices.academicAdvisors.title+'</h4>');
-                $('.modal').append('<p>'+min.studentServices.academicAdvisors.description+'</p>');
-                $('.modal').append('<p><a href="'+min.studentServices.academicAdvisors.faq.contentHref+'" target=_blank>'+min.studentServices.academicAdvisors.faq.title+'</a></p>');
+            $('#advise-accordion').append('<h4>'+min.studentServices.academicAdvisors.title+'</h4>');
+                $('#advise-accordion').append('<p>'+min.studentServices.academicAdvisors.description+'</p>');
+                $('#advise-accordion').append('<p><a href="'+min.studentServices.academicAdvisors.faq.contentHref+'" target=_blank>'+min.studentServices.academicAdvisors.faq.title+'</a></p>');
             
             // Faculty Advisors
-            $('.modal').append('<h4>'+min.studentServices.facultyAdvisors.title+'</h4>');
-            $('.modal').append('<p>'+min.studentServices.facultyAdvisors.description+'</p>');
+            $('#advise-accordion').append('<h4>'+min.studentServices.facultyAdvisors.title+'</h4>');
+            $('#advise-accordion').append('<p>'+min.studentServices.facultyAdvisors.description+'</p>');
             
             //IST Minor Advising
-            $('.modal').append('<h4>'+min.studentServices.istMinorAdvising.title+'</h4>');
+            $('#advise-accordion').append('<h4>'+min.studentServices.istMinorAdvising.title+'</h4>');
                 $.each(min.studentServices.istMinorAdvising.minorAdvisorInformation, function(l, goods){
                     // console.log(goods);
-                    $('.modal').append('<p>'+goods.title+'</p>');
-                    $('.modal').append('<p>'+goods.advisor+'</p>');
-                    $('.modal').append('<p>'+goods.email+'</p>');
+                    $('#advise-accordion').append('<p>'+goods.title+'</p>');
+                    $('#advise-accordion').append('<p>'+goods.advisor+'</p>');
+                    $('#advise-accordion').append('<p>'+goods.email+'</p>');
                 });
 
             //Professional Advisors
-            $('.modal').append('<h4>'+min.studentServices.professonalAdvisors.title+'</h4>');
+            $('#advise-accordion').append('<h4>'+min.studentServices.professonalAdvisors.title+'</h4>');
                 $.each(min.studentServices.professonalAdvisors.advisorInformation, function(m, effects){
                     // console.log(effects);
-                    $('.modal').append('<p>'+effects.name+'</p>');
-                    $('.modal').append('<p>'+effects.department+'</p>');
-                    $('.modal').append('<p>'+effects.email+'</p>');
+                    $('#advise-accordion').append('<p>'+effects.name+'</p>');
+                    $('#advise-accordion').append('<p>'+effects.department+'</p>');
+                    $('#advise-accordion').append('<p>'+effects.email+'</p>');
                 });
-        });
         //end of /resources/
         $( "#accordion" ).accordion({
-            active: 1,
+            active: 2,
             collapsible: true,
             heightStyle: "content"
         });
@@ -399,15 +332,24 @@ $(document).ready(function(){
 
     ///footer/
     getData('get', {path:'/footer/'},'#footer').done(function(min){
-        $('#social').append('<div><h4>Facebook</h4><p>'+min.social.tweet+'</p>');
-        $('#social').append('<h4>Facebook</h4><p>'+min.social.facebook+'</p>');
-        $('#social').append('<h4>Twitter</h4><p>'+min.social.twitter+'</p></div>');
+        $('#social').append('<div id="social-tabs"></div>');
+        $('#social-tabs').append('<ul id="social-ul"></ul>');
+        $('#social-ul').append('<li><a href="#tweet">Tweet</a></li>');
+        $('#social-ul').append('<li><a href="#facebook">Facebook</a></li>');
+        $('#social-ul').append('<li><a href="#twitter">Twitter</a></li>');
 
+        $('#social-tabs').append('<div id="tweet"><p>'+min.social.tweet+'</p></div>');
+        $('#social-tabs').append('<div id="facebook"><p>'+min.social.facebook+'</p></div>');
+        $('#social-tabs').append('<div id="twitter"><p>'+min.social.twitter+'</p></div>');
+        
+        $('#social').append('<div id="footer"></div>');
+        $('#footer').append(min.copyright.html);
         $.each(min.quickLinks, function(i, items){
             $('#footer').append('<a href= "'+items.href+'" target=_blank>'+items.title+'</a>');
         });
-        $('#footer').append('<p>'+min.copyright.title+'</p>'+min.copyright.html);
         
+        
+        $( "#social-tabs" ).tabs();
     });
     //end of $(document).ready();
 });

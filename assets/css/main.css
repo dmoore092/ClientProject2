@@ -225,6 +225,12 @@ body{
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
 }
+#ambo-accordion img{
+    max-width: 100%;
+}
+#footer{
+    margin-top: 50px;
+}
 /*  */
 /* 
 *   Begin Non-Mobile
