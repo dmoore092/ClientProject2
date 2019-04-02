@@ -13,7 +13,8 @@ Redesign https://ist.rit.edu/index.php using JQuery while consuming http://www.i
 * JQuery Plugins(4 Types)
     * UI Plugins
         * Table Pagination - DataTables https://datatables.net
-        * News Pagination - cPager https://www.jqueryscript.net/other/Client-Side-Pagination-Plugin-jQuery-cPager.html
+        * News Pagination - cPager https://www.jqueryscript.net/otherClient-Side-Pagination-Plugin-jQuery-cPager.html
+        * Accordion - https://jqueryui.com/accordion/
     * Other Plugins
         * Page Scrolling - AnimateScroll https://plugins.compzets.com/animatescroll/#
         * Navigation - BigSlide http://ascott1.github.io/bigSlide.js/
