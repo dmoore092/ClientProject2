@@ -231,9 +231,35 @@ body{
 #footer{
     margin-top: 50px;
 }
+#footer p{
+    font-size: .5rem;
+}
+#action{
+    margin-bottom: 15px;
+}
+#action a{
+    margin-right: 10px;
+}
+
+/* 
+*   MODAL STYLES
+*/
+.news-title, .news-date, 
+.news-desc{
+    list-style-type: none;
+}
+.news-title{
+    color: #F76902;
+    border-bottom: 1px solid #F76902;
+}
+.news-date{
+    font-size: .75rem;
+    margin-bottom: 15px;
+}
+
 /*  */
 /* 
-*   Begin Non-Mobile
+*   BEGIN NON-MOBILE
 */
 @media only screen and (min-width: 600px) {
     .main-wrapper>div:nth-of-type(1){

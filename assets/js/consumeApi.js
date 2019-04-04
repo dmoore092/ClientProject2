@@ -21,10 +21,9 @@ $(document).ready(function(){
             $('.modal').append('<ul id="listShow">');
             
             $.each(min.older, function(i, items){
-                // console.log(items);
-                $('.modal ul').append('<li class="li-item hide"><p>'+items.title+'</p></li>');
-                $('.modal ul').append('<li class="li-item hide"><p>'+items.date+'</p></li>');
-                $('.modal ul').append('<li class="li-item hide"><p>'+items.description+'</p></li>');
+                $('.modal ul').append('<li class="li-item hide news-title"><p>'+items.title+'</p></li>');
+                $('.modal ul').append('<li class="li-item hide news-date"><p>Published: '+items.date+'</p></li>');
+                $('.modal ul').append('<li class="li-item hide news-desc"><p>'+items.description+'</p></li>');
             });
             $('.modal').append('</ul>');
             $("#listShow").cPager({
@@ -84,17 +83,48 @@ $(document).ready(function(){
     ///minors/
     getData('get', {path:'/minors/'},'#ugrad-minors').done(function(min){
         var isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
-        var course = [];
+        var courses = [];
         $.each(min.UgMinors, function(i, item){
             $('#ugrad-minors').append('<div><a href="#ex1" rel="modal:open"><h4>'+ this.title + '</h4></a></div>');
             $('#ugrad-minors').find('div').eq(i).on('click', function(){
                 $.each(item.courses, function(k, classes){
-                    course.push(classes);
+                    courses.push(classes);
                 });
-                $('.modal').html($('<h4>'+item.title+'</h4><p>'+item.description+'</p><p>Courses: '+course+'</p>'));
+                $('.modal').html($('<h4>'+item.title+'</h4><p>'+item.description+'</p>'));
+                
+                console.log(courses);
+                $('.modal').append($('<div id="ug-minors-tabs"></div>'));
+                $('#ug-minors-tabs').append($('<ul id="ug-minors-tabs-ul"></ul>'));
+                $.each(courses, function(j, course){
+                    $('#ug-minors-tabs-ul').append($('<li><a href="#'+course+'">'+course+'</a></li>'));
+                });
+                $( "#ug-minors-tabs" ).tabs();
             });
         });
+        //<p>Courses: '+course+'</p>
     });
+
+    // getData('get', {path:'/footer/'},'#footer').done(function(min){
+    //     $('#social').append('<div id="social-tabs"></div>');
+    //     $('#social-tabs').append('<ul id="social-ul"></ul>');
+    //     $('#social-ul').append('<li><a href="#tweet">Tweet</a></li>');`
+    //     $('#social-ul').append('<li><a href="#facebook">Facebook</a></li>');
+    //     $('#social-ul').append('<li><a href="#twitter">Twitter</a></li>');
+
+    //     $('#social-tabs').append('<div id="tweet"><p>'+min.social.tweet+'</p></div>');
+    //     $('#social-tabs').append('<div id="facebook"><p>'+min.social.facebook+'</p></div>');
+    //     $('#social-tabs').append('<div id="twitter"><p>'+min.social.twitter+'</p></div>');
+        
+    //     $('#social').append('<div id="footer"></div>');
+    //     $('#footer').append('<div id="action"></div>');
+    //     $.each(min.quickLinks, function(i, items){
+    //         $('#action').append('<a href= "'+items.href+'" target=_blank>'+items.title+'</a>');
+    //     });
+    //     $('#footer').append(min.copyright.html);
+        
+        
+    //     $( "#social-tabs" ).tabs();
+    // });
 
     ///employment/
     getData('get', {path:'/employment/'},'#employment').done(function(min){
@@ -106,7 +136,6 @@ $(document).ready(function(){
                 stuff.push(content) 
             });
         });
-        // console.log(stuff);
         $('#employment').append('<div class="emp-emp-wrapper"></div>');
         $('.emp-emp-wrapper').append('<p class="emp-headers">'+stuff[1][0].title+'</p>');//Employment
         $('.emp-emp-wrapper').append('<p>'+stuff[1][0].description+'</p>');//IST grads are blah blah
@@ -232,13 +261,11 @@ $(document).ready(function(){
         });
         //research by faculty
         $.each(min.byFaculty, function(i, items){
-            // console.log(i, items);
             $('#research-faculty').append('<div data-uname="'+items.username+'"><a href="#ex1" rel="modal:open"><img src="https://ist.rit.edu/assets/img/people/'+items.username+'.jpg"/></a></div>');
             //https://ist.rit.edu/assets/img/people/ephics.jpg
             $('#research-faculty').find('div').eq(i).on('click', function(){
                 $('.modal').html($('<div><h4>'+items.facultyName+'</h4><ul>'));
                 $.each(items.citations, function(j, stuff){
-                    console.log(stuff);
                     $('.modal').append('<li>'+stuff+'</li>');
                 });
                 $('.modal').append('</ul></div>');
@@ -261,7 +288,6 @@ $(document).ready(function(){
             });
             $('#form-accordion').append('<h4>Graduate Forms</h4>');
             $.each(min.forms.graduateForms, function(j, stuff){
-                // console.log(stuff);
                 $('#form-accordion').append('<p><a href="https://ist.rit.edu/'+stuff.href+'" target=_blank>'+stuff.formName+'</a></p>');
             });
         $('#accordion').append('<h3 class="selector" id="student-ambassadors"><a href="">Student Ambassadors</a></h3>');
@@ -283,7 +309,6 @@ $(document).ready(function(){
             $('#study-abroad-accordion').append('<div>'+min.studyAbroad.places[0].description+'</div>');
             $('#study-abroad-accordion').append('<h5>'+min.studyAbroad.places[1].nameOfPlace+'</h5>');
             $('#study-abroad-accordion').append('<div>'+min.studyAbroad.places[1].description+'</div>');
-                console.log(min);
 
         //tutors/lab information
         $('#accordion').append('<h3 class="selector" id="tutors-lab-info"><a href="">Tutors/Lab Information</a></h3>');
@@ -308,7 +333,6 @@ $(document).ready(function(){
             //IST Minor Advising
             $('#advise-accordion').append('<h4>'+min.studentServices.istMinorAdvising.title+'</h4>');
                 $.each(min.studentServices.istMinorAdvising.minorAdvisorInformation, function(l, goods){
-                    // console.log(goods);
                     $('#advise-accordion').append('<p>'+goods.title+'</p>');
                     $('#advise-accordion').append('<p>'+goods.advisor+'</p>');
                     $('#advise-accordion').append('<p>'+goods.email+'</p>');
@@ -317,7 +341,6 @@ $(document).ready(function(){
             //Professional Advisors
             $('#advise-accordion').append('<h4>'+min.studentServices.professonalAdvisors.title+'</h4>');
                 $.each(min.studentServices.professonalAdvisors.advisorInformation, function(m, effects){
-                    // console.log(effects);
                     $('#advise-accordion').append('<p>'+effects.name+'</p>');
                     $('#advise-accordion').append('<p>'+effects.department+'</p>');
                     $('#advise-accordion').append('<p>'+effects.email+'</p>');
@@ -343,10 +366,11 @@ $(document).ready(function(){
         $('#social-tabs').append('<div id="twitter"><p>'+min.social.twitter+'</p></div>');
         
         $('#social').append('<div id="footer"></div>');
-        $('#footer').append(min.copyright.html);
+        $('#footer').append('<div id="action"></div>');
         $.each(min.quickLinks, function(i, items){
-            $('#footer').append('<a href= "'+items.href+'" target=_blank>'+items.title+'</a>');
+            $('#action').append('<a href= "'+items.href+'" target=_blank>'+items.title+'</a>');
         });
+        $('#footer').append(min.copyright.html);
         
         
         $( "#social-tabs" ).tabs();
