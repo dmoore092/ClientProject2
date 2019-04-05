@@ -6,9 +6,9 @@ $(document).ready(function(){
 
         $('#welcome-about').append('<h2 style="color: #F76902; margin-bottom: 15px;">'+ json.title + '</h2>');
         if(!isMobile){
-            $('#welcome-about').append('<h4>'+ json.description + '</h4>');
+            $('#welcome-about').append('<p>'+ json.description + '</p>');
         }
-        $('#welcome-about').append('<h4>'+ json.quote + '</h4>');
+        $('#welcome-about').append('<p style="margin-top: 15px;">'+ json.quote + '</p>');
         $('#welcome-about').append('<h4 style="color: #F76902"> - '+ json.quoteAuthor + '</h4>');
     });
 
@@ -82,49 +82,82 @@ $(document).ready(function(){
 
     ///minors/
     getData('get', {path:'/minors/'},'#ugrad-minors').done(function(min){
-        var isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
-        var courses = [];
+
+        $('#ugrad-minors').html('<div id="minors-accordion"></div>');
+        // console.log(courses);
         $.each(min.UgMinors, function(i, item){
-            $('#ugrad-minors').append('<div><a href="#ex1" rel="modal:open"><h4>'+ this.title + '</h4></a></div>');
-            $('#ugrad-minors').find('div').eq(i).on('click', function(){
-                $.each(item.courses, function(k, classes){
-                    courses.push(classes);
+            // console.log(i, item.courses[i]);
+
+            $('#minors-accordion').append('<h3>'+ item.title + '</h3>');
+            $('#minors-accordion').append('<div id="'+i+'"><p>'+ item.description + '</p></div>');
+            $('#'+i).append('<ul></ul>');
+            if(typeof item.courses[0] != 'undefined'){
+                $('#'+i+' > ul').append('<li><a href="#class1">'+ item.courses[0] + '</a></li>');
+                getData('get', {path:'/course/courseID='+item.courses[0]},'#'+i).done(function(data){
+                    $('#'+i).append('<div id="class1"><h3>'+data.title+'</h3></div>');
+                    $('#'+ i+' #class1').append('<p>'+data.description+'</p>');
                 });
-                $('.modal').html($('<h4>'+item.title+'</h4><p>'+item.description+'</p>'));
-                
-                console.log(courses);
-                $('.modal').append($('<div id="ug-minors-tabs"></div>'));
-                $('#ug-minors-tabs').append($('<ul id="ug-minors-tabs-ul"></ul>'));
-                $.each(courses, function(j, course){
-                    $('#ug-minors-tabs-ul').append($('<li><a href="#'+course+'">'+course+'</a></li>'));
+            }
+            if(typeof item.courses[1] != 'undefined'){
+                console.log(item.courses[1]);
+                $('#'+i+' > ul').append('<li><a href="#class2">'+ item.courses[1] + '</a></li>');
+                getData('get', {path:'/course/courseID='+item.courses[1]},'#'+i).done(function(data){
+                    $('#'+i).append('<div id="class2"><h3>'+data.title+'</h3></div>');
+                    $('#'+ i+' #class2').append('<p>'+data.description+'</p>');
                 });
-                $( "#ug-minors-tabs" ).tabs();
-            });
+            }
+            if(typeof item.courses[2] != 'undefined'){
+                $('#'+i+' > ul').append('<li><a href="#class3">'+ item.courses[2] + '</a></li>');
+                getData('get', {path:'/course/courseID='+item.courses[2]},'#'+i).done(function(data){
+                    $('#'+i).append('<div id="class3"><h3>'+data.title+'</h3></div>');
+                    $('#'+ i+' #class3').append('<p>'+data.description+'</p>');
+                });
+            }
+            if(typeof item.courses[3] != 'undefined'){
+                $('#'+i+' > ul').append('<li><a href="#class4">'+ item.courses[3] + '</a></li>');
+                getData('get', {path:'/course/courseID='+item.courses[3]},'#'+i).done(function(data){
+                    $('#'+i).append('<div id="class4"><h3>'+data.title+'</h3></div>');
+                    $('#'+ i+' #class4').append('<p>'+data.description+'</p>');
+                });
+            }
+            if(typeof item.courses[4] != 'undefined'){
+                $('#'+i+' > ul').append('<li><a href="#class5">'+ item.courses[4] + '</a></li>');
+                getData('get', {path:'/course/courseID='+item.courses[4]},'#'+i).done(function(data){
+                    $('#'+i).append('<div id="class5"><h3>'+data.title+'</h3></div>');
+                    $('#'+ i+' #class5').append('<p>'+data.description+'</p>');
+                });
+            }
+            if(typeof item.courses[5] != 'undefined'){
+                $('#'+i+' > ul').append('<li><a href="#class6">'+ item.courses[5] + '</a></li>');
+                getData('get', {path:'/course/courseID='+item.courses[5]},'#'+i).done(function(data){
+                    $('#'+i).append('<div id="class6"><h3>'+data.title+'</h3></div>');
+                    $('#'+ i+' #class6').append('<p>'+data.description+'</p>');
+                });
+            }
+            if(typeof item.courses[6] != 'undefined'){
+                $('#'+i+' > ul').append('<li><a href="#class7">'+ item.courses[6] + '</a></li>');
+                getData('get', {path:'/course/courseID='+item.courses[6]},'#'+i).done(function(data){
+                    $('#'+i).append('<div id="class7"><h3>'+data.title+'</h3></div>');
+                    $('#'+ i+' #class7').append('<p>'+data.description+'</p>');
+                });
+            }
+            if(typeof item.courses[7] != 'undefined'){
+                $('#'+i+' > ul').append('<li><a href="#class8">'+ item.courses[7] + '</a></li>');
+                getData('get', {path:'/course/courseID='+item.courses[7]},'#'+i).done(function(data){
+                    $('#'+i).append('<div id="class8"><h3>'+data.title+'</h3></div>');
+                    $('#'+ i+' #class8').append('<p>'+data.description+'</p>');
+                });
+            }
+
         });
-        //<p>Courses: '+course+'</p>
+
+        $( "#minors-accordion" ).accordion({collapsible: true});
+        $( "#0" ).tabs();$( "#1" ).tabs();
+        $( "#2" ).tabs();$( "#3" ).tabs();
+        $( "#4" ).tabs();$( "#5" ).tabs();
+        $( "#6" ).tabs();$( "#7" ).tabs();
+
     });
-
-    // getData('get', {path:'/footer/'},'#footer').done(function(min){
-    //     $('#social').append('<div id="social-tabs"></div>');
-    //     $('#social-tabs').append('<ul id="social-ul"></ul>');
-    //     $('#social-ul').append('<li><a href="#tweet">Tweet</a></li>');`
-    //     $('#social-ul').append('<li><a href="#facebook">Facebook</a></li>');
-    //     $('#social-ul').append('<li><a href="#twitter">Twitter</a></li>');
-
-    //     $('#social-tabs').append('<div id="tweet"><p>'+min.social.tweet+'</p></div>');
-    //     $('#social-tabs').append('<div id="facebook"><p>'+min.social.facebook+'</p></div>');
-    //     $('#social-tabs').append('<div id="twitter"><p>'+min.social.twitter+'</p></div>');
-        
-    //     $('#social').append('<div id="footer"></div>');
-    //     $('#footer').append('<div id="action"></div>');
-    //     $.each(min.quickLinks, function(i, items){
-    //         $('#action').append('<a href= "'+items.href+'" target=_blank>'+items.title+'</a>');
-    //     });
-    //     $('#footer').append(min.copyright.html);
-        
-        
-    //     $( "#social-tabs" ).tabs();
-    // });
 
     ///employment/
     getData('get', {path:'/employment/'},'#employment').done(function(min){
@@ -360,7 +393,7 @@ $(document).ready(function(){
         $('#social-ul').append('<li><a href="#tweet">Tweet</a></li>');
         $('#social-ul').append('<li><a href="#facebook">Facebook</a></li>');
         $('#social-ul').append('<li><a href="#twitter">Twitter</a></li>');
-
+            
         $('#social-tabs').append('<div id="tweet"><p>'+min.social.tweet+'</p></div>');
         $('#social-tabs').append('<div id="facebook"><p>'+min.social.facebook+'</p></div>');
         $('#social-tabs').append('<div id="twitter"><p>'+min.social.twitter+'</p></div>');
@@ -456,3 +489,40 @@ function getFacOrStaff(which, where){
         //end of people/faculty/
     });
 }
+
+ // $('#ugrad-minors').find('div').eq(i).on('click', function(){
+                
+            //     $('.modal').html($('<h4>'+item.title+'</h4><p>'+item.description+'</p>')); 
+
+            //     $('.modal').append('<div id="ug-minors-tabs"></div>');//main div
+                
+            //     $('#ug-minors-tabs').append('<div id="ug-minors-tabs"></div>'); //main div
+                    
+            //     $('#ug-minors-tabs').append('<ul id="ug-minors-ul"></ul>'); //tab div
+            
+            //     // $('#ug-minors-ul').append('<li><a href="#1">Tweet</a></li>');
+            //     // $('#ug-minors-ul').append('<li><a href="#2">Facebook</a></li>');
+            //     // $('#ug-minors-ul').append('<li><a href="#3">Twitter</a></li>');
+        
+            //     // $('#ug-minors-tabs').append('<div id="1"><p>1</p></div>'); //tab div
+            //     // $('#ug-minors-tabs').append('<div id="2"><p>2</p></div>'); //tab div
+            //     // $('#ug-minors-tabs').append('<div id="3"><p>3</p></div>'); //tab div
+
+            //     $.each(item.courses, function(j, course){
+            //         $('#ug-minors-ul').append('<li><a href="#1">Tweet</a></li>');
+            //         // getData('get', {path:'/course/courseID='+course}, '#'+course).done(function(data){
+            //         //     // $('#ug-minors-tabs-ul').append($('<li><a href="#'+data.courseID+'">'+data.courseID+'</a></li>'));
+            //         //     // $('#ug-minors-tabs').append($('<div id="'+data.courseID+'"><p>'+data.title+'</p></div>'));
+            //         //     // $('#'+data.courseID).append($('<p>'+data.description+'</p>'));
+            //         // }); 
+            //     }); 
+            //     $('#ug-minors-tabs').append('<div id="1"><p>1</p></div>'); //tab div
+            //     $('#ug-minors-tabs').append('<div id="2"><p>2</p></div>'); //tab div
+            //     $('#ug-minors-tabs').append('<div id="3"><p>3</p></div>'); //tab div
+
+
+                        // $( "#ug-minors-tabs" ).tabs({
+            //     collapsible: true,
+            //     heightStyle: "content",
+            //     active: 0
+            // });

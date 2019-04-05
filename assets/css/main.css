@@ -92,7 +92,7 @@ body{
     margin-top: 10px;
     width: 30%;
 }
-#ugrad-minors div:nth-child(odd){
+/* #ugrad-minors div:nth-child(odd){
     background: #F76902;
 }
 #ugrad-minors div:nth-child(even){
@@ -102,7 +102,7 @@ body{
     color: white;
     padding: 10px;
     text-decoration: none;
-}
+} */
 /*  */
 .emp-headers{
     /* border-bottom: 1px solid #F76902; */
@@ -283,6 +283,24 @@ body{
     #welcome-arrow{
         margin-top: 10%;
     } */
+    /* turns off all the mnor-tabs */
+    #class2, #class3,#class4,
+    #class5,#class6,#class7
+    ,#class8{
+        display: none;
+    }
+    #class1,#class2, #class3,#class4,
+    #class5,#class6,#class7
+    ,#class8{
+        border-left: 1px solid #F76902;
+        border-bottom: 1px solid #F76902;
+        border-right: 1px solid #F76902;
+        padding: 10px;
+    }
+    .ui-accordion-content p, 
+    .ui-accordion-content ul{
+        margin-bottom: 50px;
+    }
 
     #ugrad-deg img, #grad-deg img{
         width: 7%;
@@ -290,10 +308,10 @@ body{
     #ugrad-minors{
         /* height: 80vh; */
     }
-    #ugrad-minors div{
+    /* #ugrad-minors div{
         height: 69px;
         border: 2px solid black;
-    }
+    } */
     /* undergrad-minor main section location` */
     section:nth-of-type(4)>div:nth-of-type(2){
         margin-top: 10%;
