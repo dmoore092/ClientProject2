@@ -92,17 +92,6 @@ body{
     margin-top: 10px;
     width: 30%;
 }
-/* #ugrad-minors div:nth-child(odd){
-    background: #F76902;
-}
-#ugrad-minors div:nth-child(even){
-    background: #000;
-}
-#ugrad-minors a{
-    color: white;
-    padding: 10px;
-    text-decoration: none;
-} */
 /*  */
 .emp-headers{
     /* border-bottom: 1px solid #F76902; */
@@ -244,6 +233,17 @@ body{
 /* 
 *   MODAL STYLES
 */
+.modal h4{
+    border-bottom: 1px solid #F76902;
+    margin-bottom: 5px;
+    color: #F76902;
+}
+.modal div{
+    padding: 10px;
+}
+#modal-grad p, #modal-ug p{
+    margin: 5px;
+}
 .news-title, .news-date, 
 .news-desc{
     list-style-type: none;
@@ -256,7 +256,22 @@ body{
     font-size: .75rem;
     margin-bottom: 15px;
 }
-
+.caps{
+    color: #F76902;
+    margin-bottom: 5px;
+}
+.modal .li:nth-child(odd){
+    background-color: black;
+    color: white;
+    list-style-type: none;
+    padding: 10px;
+}
+.modal .li:nth-child(even){
+    background-color: #F76902;
+    color: white;
+    list-style-type: none;
+    padding: 10px;
+}
 /*  */
 /* 
 *   BEGIN NON-MOBILE
@@ -277,12 +292,6 @@ body{
     #welcome>div:nth-of-type(2){
         font-size: 3rem;
     }
-    /* #welcome-about{
-        display: block;
-    }
-    #welcome-arrow{
-        margin-top: 10%;
-    } */
     /* turns off all the mnor-tabs */
     #class2, #class3,#class4,
     #class5,#class6,#class7
@@ -305,13 +314,6 @@ body{
     #ugrad-deg img, #grad-deg img{
         width: 7%;
     }
-    #ugrad-minors{
-        /* height: 80vh; */
-    }
-    /* #ugrad-minors div{
-        height: 69px;
-        border: 2px solid black;
-    } */
     /* undergrad-minor main section location` */
     section:nth-of-type(4)>div:nth-of-type(2){
         margin-top: 10%;

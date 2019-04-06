@@ -32,7 +32,7 @@ $(document).ready(function(){
                 itemClass: "li-item",
                 pageIndex: 1
             });
-            
+            $('.modal').css({width:'90%'});
         });
     });
     
@@ -49,7 +49,24 @@ $(document).ready(function(){
         }
         $('#ugrad-deg').append('</div>');
             $('#ugrad-deg').find('div').eq(i).on('click', function(){
-                    $('.modal').html($('<h4>'+item.title+'</h4><p>'+item.concentrations+'</p>'));
+                    $('.modal').html($('<h4>'+item.title+' Concentrations:</h4>'));
+                    $('.modal').append($('<div id="modal-ug"></div>'));
+                    $('#modal-ug').append($('<p>'+item.concentrations[0]+'</p>'));
+                    $('#modal-ug').append($('<p>'+item.concentrations[1]+'</p>'));
+                    $('#modal-ug').append($('<p>'+item.concentrations[2]+'</p>'));
+                    $('#modal-ug').append($('<p>'+item.concentrations[3]+'</p>'));
+                    if(typeof item.concentrations[4] != 'undefined'){
+                        $('#modal-ug').append($('<p>'+item.concentrations[4]+'</p>'));
+                    }
+                    if(typeof item.concentrations[5] != 'undefined'){
+                        $('#modal-ug').append($('<p>'+item.concentrations[5]+'</p>'));
+                    }
+                    if(isMobile){
+                        $('.modal').css({width:'90%'});
+                    }
+                    else{
+                        $('.modal').css({width:'40%'});
+                    }
             });
         });
     });
@@ -66,16 +83,37 @@ $(document).ready(function(){
                 $('#grad-deg').append('<p>'+ item.description + '</p>');
             }
             $('#grad-deg').find('div').eq(i).on('click', function(){
-                    $('.modal').html($('<h4>'+item.title+'</h4><p>'+item.concentrations+'</p>'));
+                    $('.modal').html($('<h4>'+item.title+'</h4>'));
+                    $('.modal').append($('<div id="modal-grad"></div>'));
+                    $('#modal-grad').html($('<p>'+item.concentrations[0]+'</p>'));
+                    $('#modal-grad').append($('<p>'+item.concentrations[1]+'</p>'));
+                    $('#modal-grad').append($('<p>'+item.concentrations[2]+'</p>'));
+                    if(typeof item.concentrations[3] != 'undefined'){
+                        $('#modal-grad').append($('<p>'+item.concentrations[3]+'</p>'));
+                    }
+                    if(typeof item.concentrations[4] != 'undefined'){
+                        $('#modal-grad').append($('<p>'+item.concentrations[4]+'</p>'));
+                    }
+                    if(typeof item.concentrations[5] != 'undefined'){
+                        $('#modal-grad').append($('<p>'+item.concentrations[5]+'</p>'));
+                    }
             });
             if(i == 2){
             $('#grad-deg').append('<div><a href="#ex1" rel="modal:open">Click here to see our Graduate Advanced Certificates!</a></p>');
             $('#grad-deg').find('div').eq(3).on('click', function(){
-                $('.modal').html($('<p>'+deg.graduate[3].availableCertificates[0]+'</p><p>'+deg.graduate[3].availableCertificates[1]+'</p>'));
+                $('.modal').html($('<h4>'+deg.graduate[3].availableCertificates[0]+'</h4>'));
+                $('.modal').append($('<div id="modal-cert"></div>'));
+                $('#modal-cert').html($('<p>'+deg.graduate[3].availableCertificates[1]+'</p>'));
             });
                 return false;
             }
             $('#grad-deg').append('</div>');
+            if(isMobile){
+                $('.modal').css({width:'90%'});
+            }
+            else{
+                $('.modal').css({width:'40%'});
+            }
         });
     });
 
@@ -99,7 +137,7 @@ $(document).ready(function(){
                 });
             }
             if(typeof item.courses[1] != 'undefined'){
-                console.log(item.courses[1]);
+                // console.log(item.courses[1]);
                 $('#'+i+' > ul').append('<li><a href="#class2">'+ item.courses[1] + '</a></li>');
                 getData('get', {path:'/course/courseID='+item.courses[1]},'#'+i).done(function(data){
                     $('#'+i).append('<div id="class2"><h3>'+data.title+'</h3></div>');
@@ -284,9 +322,11 @@ $(document).ready(function(){
         $.each(min.byInterestArea, function(i, item){
             $('#research-interest-wrapper').append('<span class="research-interest-child"><a href="#ex1" rel="modal:open">'+ this.areaName + '</a></span>');
             $('#research-interest-wrapper').find('span').eq(i).on('click', function(){
-                $('.modal').html($('<ul>'));
-                $.each(item.citations, function(k, stuff){
-                    $('.modal').append($('<li>'+stuff+'</li>'));
+                $('.modal').html($('<div class="modal-research"></div>'));
+                $('.modal-research').html($('<h4>'+item.areaName+'</h4>'));
+                $('.modal-research').append($('<ul id="modal-research-ul"><ul>'));
+                $.each(item.citations, function(k, citations){
+                    $('.modal-research').append($('<li class="li">'+citations+'</li>'));
                 });
             });
             $('.modal').append($('</ul>'));
@@ -297,11 +337,13 @@ $(document).ready(function(){
             $('#research-faculty').append('<div data-uname="'+items.username+'"><a href="#ex1" rel="modal:open"><img src="https://ist.rit.edu/assets/img/people/'+items.username+'.jpg"/></a></div>');
             //https://ist.rit.edu/assets/img/people/ephics.jpg
             $('#research-faculty').find('div').eq(i).on('click', function(){
-                $('.modal').html($('<div><h4>'+items.facultyName+'</h4><ul>'));
-                $.each(items.citations, function(j, stuff){
-                    $('.modal').append('<li>'+stuff+'</li>');
+                $('.modal').html($('<div class="modal-research"></div>'));
+                $('.modal-research').html($('<h4>'+items.facultyName+'</h4>'));
+                $('.modal-research').append($('<ul id="modal-research-ul"></ul>'));
+                $.each(items.citations, function(j, citations){
+                    $('#modal-research-ul').append('<li class="li">'+citations+'</li>');
                 });
-                $('.modal').append('</ul></div>');
+                $('.modal').css({width:'90%'});
             });
         });
     });
@@ -467,24 +509,29 @@ function getFacOrStaff(which, where){
             else{
                 whichFacOrStaff = min.staff;
             }
-            
             var who = getAttributesByName(whichFacOrStaff, 'username', $(this).attr('data-uname'));
             $('.modal').html($('<div><img src="'+who.imagePath+'" alt="faculty/staff image"/>'));
             $.each(who, function(index, item){
                 if(!item == null || !item == ' ' && index != 'imagePath'){
                     if(index == 'website'){
-                        $('.modal').append('<p><span class="caps">'+index + '</span> <a href="' +item+'" target="_blank">'+item+'</a></p>');
+                        $('.modal').append('<p><span class="caps">'+index + ':</span> <a href="' +item+'" target="_blank">'+item+'</a></p>');
                     }
                     else if(index == 'email'){
-                        $('.modal').append('<p><span class="caps">'+index + '</span> <a href="mailto:'+item+'">'+item+'<a></p>');
+                        $('.modal').append('<p><span class="caps">'+index + ':</span> <a href="mailto:'+item+'">'+item+'<a></p>');
                     }
                     else{
-                        $('.modal').append('<p><span class="caps">'+index + '</span> ' +item+'</p>');
+                        $('.modal').append('<p><span class="caps">'+index + ':</span> ' +item+'</p>');
                     }
                     
                 }
             });
             $('.modal').append($('</div>'));
+            if(isMobile){
+                $('.modal').css({width:'90%'});
+            }
+            else{
+                $('.modal').css({width:'30%'});
+            }
         });
         //end of people/faculty/
     });
