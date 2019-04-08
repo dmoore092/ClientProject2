@@ -440,6 +440,8 @@ $(document).ready(function(){
         $('#social-tabs').append('<div id="facebook"><p>'+min.social.facebook+'</p></div>');
         $('#social-tabs').append('<div id="twitter"><p>'+min.social.twitter+'</p></div>');
         
+        $('#social').append('<iframe src="http://ist.rit.edu/api/contactForm.php" frameborder="0" width="100%" height="570px" id="contact-form"></iframe>');
+
         $('#social').append('<div id="footer"></div>');
         $('#footer').append('<div id="action"></div>');
         $.each(min.quickLinks, function(i, items){
@@ -475,13 +477,10 @@ function getData(getPost, d, idForSpinner){
         data: d,
         url: 'proxy.php',
         beforeSend: function(){
-            //create spinner IF there is a 3rd arg
-            $(idForSpinner).append('<img src="assets/preloaders/128x128/Preloader_2/Preloader_2.gif" class="dontuse" /> ');
+            $(idForSpinner).append('<img src="assets/preloaders/128x128/Preloader_2/Preloader_2.gif" class="spinner" /> ');
         }
     }).always(function(){
-        //kill the spinner
-        $(idForSpinner).find('.dontuse').fadeOut(1000, function(){
-            //kill it
+        $(idForSpinner).find('.spinner').fadeOut(1000, function(){
             $(this).remove();
         });
     }).fail(function(error){
@@ -537,39 +536,22 @@ function getFacOrStaff(which, where){
     });
 }
 
- // $('#ugrad-minors').find('div').eq(i).on('click', function(){
-                
-            //     $('.modal').html($('<h4>'+item.title+'</h4><p>'+item.description+'</p>')); 
-
-            //     $('.modal').append('<div id="ug-minors-tabs"></div>');//main div
-                
-            //     $('#ug-minors-tabs').append('<div id="ug-minors-tabs"></div>'); //main div
-                    
-            //     $('#ug-minors-tabs').append('<ul id="ug-minors-ul"></ul>'); //tab div
-            
-            //     // $('#ug-minors-ul').append('<li><a href="#1">Tweet</a></li>');
-            //     // $('#ug-minors-ul').append('<li><a href="#2">Facebook</a></li>');
-            //     // $('#ug-minors-ul').append('<li><a href="#3">Twitter</a></li>');
-        
-            //     // $('#ug-minors-tabs').append('<div id="1"><p>1</p></div>'); //tab div
-            //     // $('#ug-minors-tabs').append('<div id="2"><p>2</p></div>'); //tab div
-            //     // $('#ug-minors-tabs').append('<div id="3"><p>3</p></div>'); //tab div
-
-            //     $.each(item.courses, function(j, course){
-            //         $('#ug-minors-ul').append('<li><a href="#1">Tweet</a></li>');
-            //         // getData('get', {path:'/course/courseID='+course}, '#'+course).done(function(data){
-            //         //     // $('#ug-minors-tabs-ul').append($('<li><a href="#'+data.courseID+'">'+data.courseID+'</a></li>'));
-            //         //     // $('#ug-minors-tabs').append($('<div id="'+data.courseID+'"><p>'+data.title+'</p></div>'));
-            //         //     // $('#'+data.courseID).append($('<p>'+data.description+'</p>'));
-            //         // }); 
-            //     }); 
-            //     $('#ug-minors-tabs').append('<div id="1"><p>1</p></div>'); //tab div
-            //     $('#ug-minors-tabs').append('<div id="2"><p>2</p></div>'); //tab div
-            //     $('#ug-minors-tabs').append('<div id="3"><p>3</p></div>'); //tab div
-
-
-                        // $( "#ug-minors-tabs" ).tabs({
-            //     collapsible: true,
-            //     heightStyle: "content",
-            //     active: 0
-            // });
+function getForm(getPost, d, idForSpinner){
+    return $.ajax({
+        type: getPost,
+        cache: false,
+        async: true,
+        dataType: 'text',
+        data: d,
+        url: 'proxy.php',
+        beforeSend: function(){
+            $(idForSpinner).append('<img src="assets/preloaders/128x128/Preloader_2/Preloader_2.gif" class="spinner" /> ');
+        }
+    }).always(function(){
+        $(idForSpinner).find('.spinner').fadeOut(1000, function(){
+            $(this).remove();
+        });
+    }).fail(function(error){
+        console.log(error)
+    }); 
+}
