@@ -5,7 +5,7 @@ Author: Dale Moore
 
 Website Link: http://serenity.ist.rit.edu/~dwmdis/client-proj2/
 
-GitHub Link: https://github.com/dmoore092/ClientProject2
+GitHub Link: https://github.com/dmoore092/ClientProject2 
 
 ## Purpose 
 Redesign https://ist.rit.edu/index.php using JQuery while consuming http://www.ist.rit.edu/api/.
@@ -13,8 +13,9 @@ Redesign https://ist.rit.edu/index.php using JQuery while consuming http://www.i
 ## Site Features
 * Mobile First Design
 * JQuery Plugins(4 Types)
-    * UI Plugins
+    * JQuery UI Plugins
         * Accordion - https://jqueryui.com/accordion/
+        * Tabs - https://jqueryui.com/tabs/
     * Other Plugins
         * Table Pagination - DataTables https://datatables.net
         * News Pagination - cPager https://github.com/chrisland/cPager
