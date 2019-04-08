@@ -270,7 +270,7 @@ $(document).ready(function(){
                 scrollY: 400,
                 scrollCollapse: true
             });
-
+            $('.modal').css({width:'90%'});
         });
         //prof table
         $('#table-wrapper').append('<a href="#ex1" rel="modal:open" id="prof">Jobs</a>');
@@ -330,6 +330,7 @@ $(document).ready(function(){
                 });
             });
             $('.modal').append($('</ul>'));
+            $('.modal').css({width:'90%'});
             //end of research by interest
         });
         //research by faculty

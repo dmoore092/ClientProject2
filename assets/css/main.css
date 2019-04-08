@@ -357,7 +357,7 @@ body{
     }
     #research-faculty div{
         display: inline;
-        width: 10%;
+        /* width: 10%; */
     }
     #research-faculty img{
         max-width: 10%;
