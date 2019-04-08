@@ -3,7 +3,8 @@ Created on 3/30/2019
 
 Author: Dale Moore
 
-Link: http://www.google.com
+Website Link: http://serenity.ist.rit.edu/~dwmdis/client-proj2/
+GitHub Link: https://github.com/dmoore092/ClientProject2
 
 ## Purpose 
 Redesign https://ist.rit.edu/index.php using JQuery while consuming http://www.ist.rit.edu/api/.
@@ -19,4 +20,3 @@ Redesign https://ist.rit.edu/index.php using JQuery while consuming http://www.i
         * Page Scrolling - AnimateScroll https://plugins.compzets.com/animatescroll/#
         * Navigation - BigSlide http://ascott1.github.io/bigSlide.js/
         * Modal - Jquery Modal https://jquerymodal.com/
-*
