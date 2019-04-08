@@ -1,4 +1,8 @@
-
+/*
+* Javascript file to consume the API at http://ist.rit.edu/api
+* Author: Dale Moore
+* Finished on 3/8/2019
+*/
 $(document).ready(function(){
     //welcome/about
     getData('get', {path:'/about/'},'#welcome-about','#welcome-about').done(function(json){
@@ -14,7 +18,6 @@ $(document).ready(function(){
 
     //news/
     getData('get', {path:'/news/'},'#news').done(function(min){
-        //var isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
         $('#news').append('<h4><a href="#ex1" rel="modal:open">Check out the latest news!</a></h4>');
         $('#news').on('click', function(){
             $('.modal').html('<div class="turn-page" id="pager"></div>');
@@ -122,10 +125,7 @@ $(document).ready(function(){
     getData('get', {path:'/minors/'},'#ugrad-minors').done(function(min){
 
         $('#ugrad-minors').html('<div id="minors-accordion"></div>');
-        // console.log(courses);
         $.each(min.UgMinors, function(i, item){
-            // console.log(i, item.courses[i]);
-
             $('#minors-accordion').append('<h3>'+ item.title + '</h3>');
             $('#minors-accordion').append('<div id="'+i+'"><p>'+ item.description + '</p></div>');
             $('#'+i).append('<ul></ul>');
@@ -137,7 +137,7 @@ $(document).ready(function(){
                 });
             }
             if(typeof item.courses[1] != 'undefined'){
-                // console.log(item.courses[1]);
+                // This should have been cleaned up, ran out of time
                 $('#'+i+' > ul').append('<li><a href="#class2">'+ item.courses[1] + '</a></li>');
                 getData('get', {path:'/course/courseID='+item.courses[1]},'#'+i).done(function(data){
                     $('#'+i).append('<div id="class2"><h3>'+data.title+'</h3></div>');
@@ -202,7 +202,6 @@ $(document).ready(function(){
         var stuff = [];
 
         $.each(min, function(i, item){
-            // $('#employment').append('<h4 class="emp-title">'+item.title+'</h4>');
             $.each(item, function(j, content){
                 stuff.push(content) 
             });
@@ -317,7 +316,6 @@ $(document).ready(function(){
     getData('get', {path:'/research/'},'#research-interest').done(function(min){
         var isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
         //by interestArea
-        // var degimages = ["assets/images/icons/presentation.png", "assets/images/icons/head.png", "assets/images/icons/setting.png"];
         $('#research-interest').append('<div id="research-interest-wrapper"></div>');
         $.each(min.byInterestArea, function(i, item){
             $('#research-interest-wrapper').append('<span class="research-interest-child"><a href="#ex1" rel="modal:open">'+ this.areaName + '</a></span>');
@@ -536,23 +534,4 @@ function getFacOrStaff(which, where){
         //end of people/faculty/
     });
 }
-
-function getForm(getPost, d, idForSpinner){
-    return $.ajax({
-        type: getPost,
-        cache: false,
-        async: true,
-        dataType: 'text',
-        data: d,
-        url: 'proxy.php',
-        beforeSend: function(){
-            $(idForSpinner).append('<img src="assets/preloaders/128x128/Preloader_2/Preloader_2.gif" class="spinner" /> ');
-        }
-    }).always(function(){
-        $(idForSpinner).find('.spinner').fadeOut(1000, function(){
-            $(this).remove();
-        });
-    }).fail(function(error){
-        console.log(error)
-    }); 
-}
+//End of Program
